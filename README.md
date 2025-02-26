@@ -17,6 +17,10 @@ git branch
 ```
 giver liste af tilgængelige branches.
 ```sh
+git add -A
+```
+Tilføjer alle oprettede filer, skal bruges ved .xlsx filer
+```sh
 git push -u origin nicholas
 ```
 pusher indhold fra nicholas til `main`.
