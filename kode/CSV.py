@@ -2,7 +2,8 @@ import pandas as pd
 
 # Load the Excel file
 excel_file_path = "C:/Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data.xlsx"  # Change to your actual file path
-df = pd.read_excel(excel_file_path, sheet_name='sheet1')  # Adjust sheet name if needed
+df = pd.read_excel(excel_file_path, sheet_name=0)  # Loads the first sheet
+
 
 # Save it as a new CSV file
 csv_file_path = "C:/Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/Data.csv"  # Define your output CSV file name
