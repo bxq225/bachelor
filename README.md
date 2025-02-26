@@ -5,9 +5,9 @@
 
 ## Eksempel på at lave egen branch
 ```sh
-git checkout -b martin
+git checkout -b navn
 ```
-opretter lokal branch der hedder `martin` og skifter til den
+opretter lokal branch der hedder `navn` og skifter til den
 ```sh
 git checkout main
 ```
@@ -21,12 +21,12 @@ git add -A
 ```
 Tilføjer alle oprettede filer, skal bruges ved .xlsx filer
 ```sh
-git push -u origin nicholas
+git push -u origin branch
 ```
-pusher indhold fra nicholas til `main`.
-Alternaivt: Hvis du er i `main` og vil pulle til `main` fra `nicholas`
+pusher indhold fra branch til main.
+Alternaivt: Hvis du er i `main` og vil pulle til `main` fra en branch
 ```sh
-git pull origin nicholas
+git pull origin branch
 ```
 Til slut, som altid (når du står i `main`)
 ```sh
