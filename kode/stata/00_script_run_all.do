@@ -2,22 +2,22 @@
 **** 0. Globals to Be Specified
 ***************************************
 
-global path "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata"
+global path "C:\Users/marti/Documents/bachelor"
 
-global dataroot "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata/final_data"
-global coderoot "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata/programs"
-global resrootfig "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata/final_figures"
-global resrootdata "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata/results"
-global datarootrobustness "C:\Users/marti/Documents/Bachelor/xavier_files/stata_scripts/replication_stata/final_data/robustness_datasets"
+global dataroot "C:\Users/marti/Documents/bachelor"
+global coderoot "C:\Users/marti/Documents/bachelor/kode/stata"
+global resrootfig "C:\Users/marti/Documents/bachelor/data/final_data/final_figures"
+global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
+global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
 
 ***************************************
 **** 0. Prepare Raw Data 
 ***************************************
 
 do ${coderoot}/0a_prepare_data.do 
-do ${coderoot}/0b_prepare_historical_data.do 
-do ${coderoot}/0c_prepare_age_data.do 
-do ${coderoot}/0d_prepare_historical_age_data.do 
+*do ${coderoot}/0b_prepare_historical_data.do 
+*do ${coderoot}/0c_prepare_age_data.do 
+*do ${coderoot}/0d_prepare_historical_age_data.do 
 
 *******************************************************
 **** 1. Descriptive Stats Aggregate & by Income Group
