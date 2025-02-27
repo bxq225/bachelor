@@ -4,3 +4,8 @@ Indkomstgrupper kategorier
 3 - 450.000-699.999
 4 - 700.000-999.999
 5 - Over 1.000.000
+Nye fil navne:
+Yr_UCC_IncPercentile.csv = Data.csv
+benchmark_real_pce = prisindeks.csv
+adjustment_factor_realPCE_geomlasp = adjustment_factor_PrisIndeks_geomlasp
+cex_micro_1984_2019_final_fisher.dta = forbrugs_data.dta
