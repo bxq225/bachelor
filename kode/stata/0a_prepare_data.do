@@ -6,7 +6,7 @@
 
 * study aggregate trends in this sample:
 clear
-import delimited "$dataroot/Data.csv"
+import delimited "$dataroot/data.csv"
 
 * we must drop categories for which price indices are not available
 * namely: pensions & social security + life & personal insurance 

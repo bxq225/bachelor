@@ -11,6 +11,13 @@ global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
 global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
 
 ***************************************
+**** 0. Save the data as .dta format 
+***************************************
+import excel "C:\Users\marti\Documents\bachelor\data.xlsx",sheet("data") first
+save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
+export delimited using C:\Users\marti\Documents\bachelor\data.csv, replace
+
+***************************************
 **** 0. Prepare Raw Data 
 ***************************************
 
