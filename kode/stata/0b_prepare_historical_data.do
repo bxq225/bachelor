@@ -4,24 +4,24 @@ import delimited "$dataroot/Yr_UCC_IncPercentile_EqlExpnShrIncrem_1960_2019.csv"
 
 * we must drop categories for which price indices are not available
 * namely: pensions & social security + life & personal insurance 
-drop if missing(annual_gross_infl_t_tminus1)
-drop if missing(annual_gross_infl_tplus1_t)
+drop if missing(inflation_t_tminus1)
+drop if missing(inflation_t_tplus1)
 * we also drop categories that correspond to "investment", namely life insurance and education (results are stable without)
 drop if l3=="Life and other personal insurance"
 drop if l3=="Education" 
 
 * aggregate overall (rather than working with percentiles)
 replace wgt_mean_expn=wgt_mean_expn/100 // to compute aggregate expenditure we must take into account that each bin is just 100th of the total
-collapse (sum)  wgt_mean_expn, by(ref_yr ucc_str annual_gross_infl_t_tminus1 annual_gross_infl_tplus1_t)
+collapse (sum)  wgt_mean_expn, by(ref_yr ucc_str inflation_t_tminus1 inflation_t_tplus1)
 
 bysort ref_yr: egen double tot_expn=sum(wgt_mean_expn)
 gen double expn_shr_t = wgt_mean_expn/tot_expn
 
-bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(annual_gross_infl_t_tminus1)^(-1))
+bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
 replace paasche_tm1_t=(paasche_tm1_t)^(-1)
-bysort ref_yr: egen double laspeyres_t_tp1=sum(expn_shr_t*annual_gross_infl_tplus1_t)
+bysort ref_yr: egen double laspeyres_t_tp1=sum(expn_shr_t*inflation_t_tplus1)
 * geom indices:
-bysort ref_yr: egen geom_laspeyres_t_tp1=sum(expn_shr_t*log(annual_gross_infl_tplus1_t))
+bysort ref_yr: egen geom_laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
 replace geom_laspeyres_t_tp1=exp(geom_laspeyres_t_tp1)
 
 keep ref_yr tot_expn laspeyres_t_tp1 paasche_tm1_t geom_laspeyres_t_tp1
@@ -79,13 +79,10 @@ import delimited "$dataroot/Yr_UCC_IncPercentile_EqlExpnShrIncrem_1960_2019.csv"
 
 * we must drop categories for which price indices are not available
 * namely: pensions & social security + life & personal insurance 
-drop if missing(annual_gross_infl_t_tminus1)
-drop if missing(annual_gross_infl_tplus1_t)
-* we also drop categories that correspond to "investment", namely life insurance and education (results are stable without)
-drop if l3=="Life and other personal insurance"
-drop if l3=="Education" 
+drop if missing(inflation_t_tminus1)
+drop if missing(inflation_t_tplus1)
 
-bysort ref_yr inc_percentile: egen double tot_expn=sum(wgt_mean_expn)
+bysort ref_yr inc_percentile: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = wgt_mean_expn/tot_expn
 rename wgt_mean_expn expn_t 
@@ -115,16 +112,16 @@ save "$dataroot/cex_micro_1955_2019_final.dta", replace
 
 use "$dataroot/cex_micro_1955_2019_final.dta", clear
 
-collapse (sum)  expn_t, by(ref_yr ucc_str annual_gross_infl_t_tminus1 annual_gross_infl_tplus1_t)
+collapse (sum)  expn_t, by(ref_yr ucc_str inflation_t_tminus1 inflation_t_tplus1)
 
 bysort ref_yr: egen double tot_expn=sum(expn_t)
 gen double expn_shr_t = expn_t/tot_expn
 
-bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(annual_gross_infl_t_tminus1)^(-1))
+bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
 replace paasche_tm1_t=(paasche_tm1_t)^(-1)
-bysort ref_yr: egen double laspeyres_t_tp1=sum(expn_shr_t*annual_gross_infl_tplus1_t)
+bysort ref_yr: egen double laspeyres_t_tp1=sum(expn_shr_t*inflation_t_tplus1)
 * geom indices:
-bysort ref_yr: egen geom_laspeyres_t_tp1=sum(expn_shr_t*log(annual_gross_infl_tplus1_t))
+bysort ref_yr: egen geom_laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
 replace geom_laspeyres_t_tp1=exp(geom_laspeyres_t_tp1)
 
 keep ref_yr tot_expn laspeyres_t_tp1 paasche_tm1_t geom_laspeyres_t_tp1
