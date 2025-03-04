@@ -17,7 +17,7 @@ global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
 global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata"
 global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/Final_figures"
-global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_da"
+global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
 
 ***************************************
@@ -55,7 +55,7 @@ do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *******************************************
 **** 2. NH Correction - main back to 1984
 *******************************************
-/*
+
 * first period as base
 do ${coderoot}/2a_i_apply_algorithm_percentile.do
 do ${coderoot}/2a_ii_algorithm_results_percentile.do
@@ -66,7 +66,7 @@ do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
 
 * aggregate results 
 do ${coderoot}/2c_algorithm_results_aggregate.do
-
+/*
 ********************************************
 **** 3. NH Correction with historical data
 ********************************************
@@ -76,7 +76,7 @@ do ${coderoot}/3a_apply_algorithm_percentile_historical.do
 * repeat with 2019 as base
 do ${coderoot}/3b_apply_reverse_algorithm_percentile_historical.do
 do ${coderoot}/3c_algorithm_results_aggregate_historical.do
-
+*/
 ****************************************************************
 **** 4. Robustness checks for results across income percentiles
 ****************************************************************
