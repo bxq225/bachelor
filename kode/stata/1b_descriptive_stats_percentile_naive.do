@@ -40,7 +40,7 @@ gen nominal_expenditure=tot_expn/temp2*100
 drop temp temp2 
 
 gen real_expenditure=nominal_expenditure/laspeyres_price_index_final*100
-gen laspeyres_average=213.1559 // obtained from other do.file ("aggregate")
+gen laspeyres_average=126 // obtained from other do.file ("aggregate")
 gen real_expenditure_naive=nominal_expenditure/laspeyres_average*100 if ref_yr==2019
 gen real_expenditure_growth=(real_expenditure/100-1)*100
 gen real_expenditure_growth_naive=(real_expenditure_naive/100-1)*100
