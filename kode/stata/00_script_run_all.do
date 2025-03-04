@@ -12,6 +12,7 @@ global resrootfig "C:\Users/marti/Documents/bachelor/data/final_data/final_figur
 global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
 global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
 */
+/*
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
@@ -19,6 +20,15 @@ global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata
 global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/final_figures"
 global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/results"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
+*/
+
+global path "F:\bachelor"
+
+global dataroot "F:\bachelor\data"
+global coderoot "F:\bachelor\kode\stata"
+global resrootfig "F:\bachelor\data\final_data"
+global resrootdata "F:\bachelor\data\final_data\results"
+global datarootrobustness "F:\bachelor\data\final_data\robustness_datasets"
 
 ***************************************
 **** 0. Save the data as .dta format 
@@ -28,9 +38,15 @@ import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") fi
 save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
 export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
 */
+/*
 import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
+*/
+
+import excel "F:\bachelor\data\data.xlsx",sheet("data") first
+save "F:\bachelor\data\data.dta", replace
+export delimited using F:\bachelor\data\data.csv, replace
 
 
 ***************************************
@@ -46,7 +62,7 @@ do ${coderoot}/0a_prepare_data.do
 **** 1. Descriptive Stats Aggregate & by Income Group
 ******************************************************
 
-do ${coderoot}/1a_descriptive_stats_agg.do
+*do ${coderoot}/1a_descriptive_stats_agg.do
 *do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *do ${coderoot}/1c_descriptive_stats_agg_historical.do
 *do ${coderoot}/1d_descriptive_stats_percentile_naive_historical.do
