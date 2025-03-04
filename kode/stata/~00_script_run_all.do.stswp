@@ -46,8 +46,8 @@ do ${coderoot}/0a_prepare_data.do
 **** 1. Descriptive Stats Aggregate & by Income Group
 ******************************************************
 
-do ${coderoot}/1a_descriptive_stats_agg.do
-do ${coderoot}/1b_descriptive_stats_percentile_naive.do
+*do ${coderoot}/1a_descriptive_stats_agg.do
+*do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *do ${coderoot}/1c_descriptive_stats_agg_historical.do
 *do ${coderoot}/1d_descriptive_stats_percentile_naive_historical.do
 *do ${coderoot}/1e_descriptive_stats_percentile_naive_historical_age.do
@@ -58,6 +58,7 @@ do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 
 * first period as base
 do ${coderoot}/2a_i_apply_algorithm_percentile.do
+/*
 do ${coderoot}/2a_ii_algorithm_results_percentile.do
 
 * last period as base 

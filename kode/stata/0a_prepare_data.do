@@ -107,6 +107,8 @@ replace expn_t=expn_t*adjustment_factor
 replace tot_expn=tot_expn*adjustment_factor
 drop adjustment_factor* 
 
+
+
 save "$dataroot/Forbrugs_Data.dta", replace
 
 

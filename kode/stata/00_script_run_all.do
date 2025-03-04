@@ -46,8 +46,8 @@ do ${coderoot}/0a_prepare_data.do
 **** 1. Descriptive Stats Aggregate & by Income Group
 ******************************************************
 
-do ${coderoot}/1a_descriptive_stats_agg.do
-do ${coderoot}/1b_descriptive_stats_percentile_naive.do
+*do ${coderoot}/1a_descriptive_stats_agg.do
+*do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *do ${coderoot}/1c_descriptive_stats_agg_historical.do
 *do ${coderoot}/1d_descriptive_stats_percentile_naive_historical.do
 *do ${coderoot}/1e_descriptive_stats_percentile_naive_historical_age.do
@@ -55,9 +55,10 @@ do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *******************************************
 **** 2. NH Correction - main back to 1984
 *******************************************
-/*
+
 * first period as base
 do ${coderoot}/2a_i_apply_algorithm_percentile.do
+/*
 do ${coderoot}/2a_ii_algorithm_results_percentile.do
 
 * last period as base 
@@ -66,7 +67,7 @@ do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
 
 * aggregate results 
 do ${coderoot}/2c_algorithm_results_aggregate.do
-
+/*
 ********************************************
 **** 3. NH Correction with historical data
 ********************************************
@@ -76,7 +77,7 @@ do ${coderoot}/3a_apply_algorithm_percentile_historical.do
 * repeat with 2019 as base
 do ${coderoot}/3b_apply_reverse_algorithm_percentile_historical.do
 do ${coderoot}/3c_algorithm_results_aggregate_historical.do
-
+*/
 ****************************************************************
 **** 4. Robustness checks for results across income percentiles
 ****************************************************************
