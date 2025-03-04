@@ -5,9 +5,9 @@
 
 ## Eksempel på at lave egen branch
 ```sh
-git checkout -b navn
+git checkout -b branch
 ```
-opretter lokal branch der hedder `navn` og skifter til den
+opretter lokal branch der hedder `branch` og skifter til den
 ```sh
 git checkout main
 ```
