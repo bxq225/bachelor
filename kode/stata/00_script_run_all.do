@@ -16,8 +16,8 @@ global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
 global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata"
-global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/final_figures"
-global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/results"
+global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/Final_figures"
+global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
 
 ***************************************
@@ -47,7 +47,7 @@ do ${coderoot}/0a_prepare_data.do
 ******************************************************
 
 do ${coderoot}/1a_descriptive_stats_agg.do
-*do ${coderoot}/1b_descriptive_stats_percentile_naive.do
+do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 *do ${coderoot}/1c_descriptive_stats_agg_historical.do
 *do ${coderoot}/1d_descriptive_stats_percentile_naive_historical.do
 *do ${coderoot}/1e_descriptive_stats_percentile_naive_historical_age.do
