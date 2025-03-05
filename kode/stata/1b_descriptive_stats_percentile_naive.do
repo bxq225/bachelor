@@ -35,14 +35,14 @@ twoway connected laspeyres_annual_infl  indkomstgruppe if ref_yr==2022, xtitle("
 graph export "$resrootfig/FigE1v.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)
-gen temp=tot_expn*(ref_yr==2007)
+gen temp=tot_expn*(ref_yr==2008)
 bysort indkomstgruppe: egen temp2=max(temp)
 gen nominal_expenditure=tot_expn/temp2*100
 drop temp temp2 
 
 gen real_expenditure=nominal_expenditure/laspeyres_price_index_final*100
-gen laspeyres_max=max(laspeyres_price_index_final)
-gen real_expenditure_naive=nominal_expenditure/laspeyres_average*100 if ref_yr==2019
+egen laspeyres_max=max(laspeyres_price_index_final)
+gen real_expenditure_naive=nominal_expenditure/laspeyres_max*100 if ref_yr==2022
 gen real_expenditure_growth=(real_expenditure/100-1)*100
 gen real_expenditure_growth_naive=(real_expenditure_naive/100-1)*100
 gen change_real_exp = real_expenditure_growth_naive - real_expenditure_growth
