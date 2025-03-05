@@ -12,7 +12,6 @@ global resrootfig "C:\Users/marti/Documents/bachelor/data/final_data/final_figur
 global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
 global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
 */
-/*
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
@@ -20,15 +19,6 @@ global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata
 global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/Final_figures"
 global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
-*/
-
-global path "F:\bachelor"
-
-global dataroot "F:\bachelor\data"
-global coderoot "F:\bachelor\kode\stata"
-global resrootfig "F:\bachelor\data\final_data"
-global resrootdata "F:\bachelor\data\final_data\results"
-global datarootrobustness "F:\bachelor\data\final_data\robustness_datasets"
 
 ***************************************
 **** 0. Save the data as .dta format 
@@ -38,15 +28,9 @@ import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") fi
 save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
 export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
 */
-/*
 import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
-*/
-
-import excel "F:\bachelor\data\data.xlsx",sheet("data") first
-save "F:\bachelor\data\data.dta", replace
-export delimited using F:\bachelor\data\data.csv, replace
 
 
 ***************************************
@@ -80,7 +64,7 @@ do ${coderoot}/2a_ii_algorithm_results_percentile.do
 * last period as base 
 do ${coderoot}/2b_i_apply_reverse_algorithm_percentile.do
 do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
-/*
+
 * aggregate results 
 do ${coderoot}/2c_algorithm_results_aggregate.do
 /*

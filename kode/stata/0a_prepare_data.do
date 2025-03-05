@@ -56,8 +56,9 @@ gen double real_expn_fisher = tot_expn/cum_fisher_t_tp1[_n-1]
 merge 1:1 ref_yr using "$dataroot/prisindeks.dta"
 keep if _merge==3 
 drop _merge
-gen adjustment_factor = prisindeks/ real_expn
-gen adjustment_factor_fisher = prisindeks/ real_expn_fisher
+gen prisindeks_num = prisindeks
+gen adjustment_factor = prisindeks_num/ real_expn
+gen adjustment_factor_fisher = prisindeks_num/ real_expn_fisher
 keep ref_yr adjustment_factor
 save "$dataroot/adjustment_factor_PrisIndeks_geomlasp", replace
 
@@ -105,6 +106,8 @@ merge m:1 ref_yr using "$dataroot/adjustment_factor_PrisIndeks_geomlasp"
 replace expn_t=expn_t*adjustment_factor
 replace tot_expn=tot_expn*adjustment_factor
 drop adjustment_factor* 
+
+
 
 save "$dataroot/Forbrugs_Data.dta", replace
 
