@@ -67,10 +67,10 @@ do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
 
 * aggregate results 
 do ${coderoot}/2c_algorithm_results_aggregate.do
-/*
+
 ********************************************
 **** 3. NH Correction with historical data
-********************************************
+/*********************************************
 
 * with 1984 as base
 do ${coderoot}/3a_apply_algorithm_percentile_historical.do
@@ -81,7 +81,7 @@ do ${coderoot}/3c_algorithm_results_aggregate_historical.do
 ****************************************************************
 **** 4. Robustness checks for results across income percentiles
 ****************************************************************
-
+/*
 * with additional controls (education, age, race)
 do ${coderoot}/4a_i_apply_algorithm_percentile_controls.do
 do ${coderoot}/4a_ii_apply_reverse_algorithm_percentile_controls.do
@@ -103,15 +103,15 @@ do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
 ******************************
 **** 5. Results by age groups
 ******************************
-
+/*
 do ${coderoot}/6a_apply_algorithm_percentile_historical_age.do
 do ${coderoot}/6b_apply_reverse_algorithm_percentile_historical_age.do
 do ${coderoot}/6c_algorithm_results_aggregate_historical_age.do 
-
+*/
 ****************************************************************
 **** 6. Appendix robustness checks 
 ****************************************************************
-
+/*
 * robustness 1 (32 product categories)
 do ${coderoot}/7a_prepare_data_robustness1.do
 do ${coderoot}/7b_i_apply_algorithm_percentile_robustness1.do
@@ -186,6 +186,6 @@ do ${coderoot}/18c_algorithm_results_aggregate_refined_order2.do
 * now plot alternative algorithms for final robustness figure
 do ${coderoot}/19_algorithm_results_aggregate_refined_order2_order1_RCF.do
 
-
+*/
 
 
