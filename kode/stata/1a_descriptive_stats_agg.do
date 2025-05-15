@@ -10,6 +10,7 @@ collapse (sum)  expn_t, by(ref_yr kategori indkomstgruppe gns_pris_indeks inflat
 
 replace expn_t=expn_t/5
 bysort ref_yr: egen double tot_expn=sum(expn_t)
+*bysort ref_yr: egen double tot_expn_indkomst=sum(expn_t)
 gen expn_shr_t = expn_t/tot_expn
 
 * iii) compute Laspeyres inflation
