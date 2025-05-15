@@ -21,8 +21,12 @@ graph export "$resrootfig/FigE2ii.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
 replace annual_bias_percent=annual_bias_percent*100
-* fig 4Aii
-scatter annual_bias_percent indkomstgruppe if ref_yr_o==2008, xtitle("Pre-tax Income Percentile") ytitle("Annual Bias in Real Consumption Growth (%), 2008")  graphregion(color(white)) xlabel(1(1)5)
+* fig 4Aii with tendency line
+twoway (scatter annual_bias_percent indkomstgruppe if ref_yr_o==2008) ///
+   (lfit annual_bias_percent indkomstgruppe if ref_yr_o==2008), ///
+   xtitle("Pre-tax Income Percentile") ///
+   ytitle("Annual Bias in Real Consumption Growth (%), 2008") ///
+   graphregion(color(white)) xlabel(1(1)5)
 graph export "$resrootfig/Fig4Aii.pdf", as(pdf) replace
 
 * plot adjustment to real consumption in level in final year

@@ -16,8 +16,13 @@ graph export "$resrootfig/FigE2i.pdf", as(pdf) replace
 ** iii) show annual bias correction
 replace annual_bias_percent=annual_bias_percent*100
 
-scatter annual_bias_percent indkomstgruppe if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Annual Bias in Real Consumption Growth (%), 2022")  graphregion(color(white)) xlabel(1(1)5)
+scatter annual_bias_percent indkomstgruppe if ref_yr==2022 || lfit annual_bias_percent indkomstgruppe if ref_yr==2022, ///
+   xtitle("Pre-tax Income Percentile") ///
+   ytitle("Annual Bias in Real Consumption Growth (%), 2022") ///
+   graphregion(color(white)) xlabel(1(1)5) ///
+   legend(order(1 "Annual Bias" 2 "Linear Fit"))
 graph export "$resrootfig/Fig4Ai.pdf", as(pdf) replace
+
 
 * plot adjustment to real consumption in level in final year
 foreach i in y qu q {

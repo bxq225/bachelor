@@ -34,7 +34,7 @@ scatter pc ref_yr, xtitle("Year") ytitle("Bias in Aggreate Real Consumption")  g
 
 merge 1:1 ref_yr using "$dataroot/temp2"
 
-scatter pc_dev_real_cons_2008 ref_yr || scatter pc_dev_real_cons ref_yr , msymbol(T) xtitle("Year") ytitle("Bias in Average Real Consumption")  graphregion(color(white)) xlabel(2008(2)2022) legend(order(1 "2008 base prices" 2 " 2022 base prices") rows(1)) ylabel(-3(0.5)0)
+scatter pc_dev_real_cons_2008 ref_yr || scatter pc_dev_real_cons ref_yr , msymbol(T) xtitle("Year") ytitle("Bias in Average Real Consumption")  graphregion(color(white)) xlabel(2008(2)2022) legend(order(1 "2008 base prices" 2 " 2022 base prices") rows(1)) ylabel(-0.5(0.1)0.2)
 graph export "$resrootfig/Fig3a.pdf", as(pdf) replace
 
 replace annual_bias_percent_2008prices=annual_bias_percent_2008prices*100
