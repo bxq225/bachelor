@@ -29,6 +29,7 @@ twoway (scatter annual_bias_percent indkomstgruppe if ref_yr_o==2008) ///
    graphregion(color(white)) xlabel(1(1)5)
 graph export "$resrootfig/Fig4Aii.pdf", as(pdf) replace
 
+
 * plot adjustment to real consumption in level in final year
 foreach i in y qu q {
 	gen double `i'_level=exp(`i')
