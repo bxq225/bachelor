@@ -17,10 +17,10 @@ graph export "$resrootfig/FigE2i.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 
 scatter annual_bias_percent indkomstgruppe if ref_yr==2022 || lfit annual_bias_percent indkomstgruppe if ref_yr==2022, ///
-   xtitle("Pre-tax Income Percentile") ///
-   ytitle("Annual Bias in Real Consumption Growth (%), 2022") ///
+   xtitle("Indkomstgruppe") ///
+   ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
    graphregion(color(white)) xlabel(1(1)5) ///
-   legend(order(1 "Annual Bias" 2 "Linear Fit"))
+   legend(off)
 graph export "$resrootfig/Fig4Ai.pdf", as(pdf) replace
 
 
@@ -31,11 +31,11 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 12d
-scatter pc_dev_real_cons indkomstgruppe if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Bias in 2022 Real Consumption Level, %")  graphregion(color(white)) xlabel(1(1)5)
+scatter pc_dev_real_cons indkomstgruppe if ref_yr==2022 || lfit pc_dev_real_cons indkomstgruppe if ref_yr==2022, xtitle("Indkomstgruppe") ytitle("Bias i 2022 reel forbrugs niveau, %")  graphregion(color(white)) xlabel(1(1)5) legend(off)
 graph export "$resrootfig/Fig4Bi.pdf", as(pdf) replace
 
 * iii) depict NH adjustment to real cumulative consumption growth 
-keep if ref_yr==2008 | ref_yr==2022
+keep if ref_yr==2003 | ref_yr==2022
 
 sort indkomstgruppe ref_yr
 foreach i in q qu y {

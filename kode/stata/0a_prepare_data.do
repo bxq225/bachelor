@@ -32,21 +32,26 @@ duplicates drop
 
 sort ref_yr
 gen double paasche_t_tp1 = paasche_tm1_t[_n+1]
-gen double fisher_t_tp1=sqrt(paasche_t_tp1*laspeyres_t_tp1) 
+
+gen double fisher_t_tp1 = sqrt(paasche_t_tp1*laspeyres_t_tp1)
+
 * set to missing in the last year of the data
 drop paasche_tm1_t
 
 foreach i in laspeyres geom_laspeyres paasche fisher {
-gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2007
-replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2007
+gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2002
+replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2002
 }
 
-scatter cum_laspeyres_t_tp1 ref_y 
+scatter cum_laspeyres_t_tp1 ref_y, xlabel(2002(2)2022) ytitle("Laspeyres Inflation") xtitle("Aarstal") 
+graph export "$resrootfig/Fig0B.pdf", as(pdf) replace
 
 scatter tot_expn ref_y 
 
 gen double real_expn = tot_expn/cum_geom_laspeyres_t_tp1[_n-1]
-scatter real_expn ref_y
+scatter real_expn ref_y, xlabel(2002(2)2022) ytitle("Reel Udgifter") xtitle("Aarstal") 
+graph export "$resrootfig/Fig0A.pdf", as(pdf) replace
+
 * also keep track of results with fisher index for robustness analysis
 gen double real_expn_fisher = tot_expn/cum_fisher_t_tp1[_n-1]
 
@@ -110,6 +115,33 @@ drop adjustment_factor*
 
 
 save "$dataroot/Forbrugs_Data.dta", replace
+
+
+clear
+import delimited "$dataroot/data.csv"
+
+* we must drop categories for which price indices are not available
+* namely: pensions & social security + life & personal insurance 
+drop if missing(inflation_t_tminus1)
+drop if missing(inflation_t_tplus1)
+
+
+bysort ref_yr indkomstgruppe: egen double tot_expn=sum(forbrug)
+
+gen double expn_shr_t = forbrug/tot_expn
+rename forbrug expn_t 
+
+merge m:1 ref_yr using "$dataroot/adjustment_factor_PrisIndeks_geomlasp"
+replace expn_t=expn_t*adjustment_factor
+replace tot_expn=tot_expn*adjustment_factor
+drop adjustment_factor* 
+
+drop _merge 
+
+
+save "$dataroot/Forbrugs_data_fischer.dta", replace
+
+
 
 
 
