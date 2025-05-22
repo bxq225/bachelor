@@ -14,24 +14,24 @@ replace ref_yr = 2003+(2022-ref_yr)
 * => already done in initial file
 
 * iii) compute Laspeyres inflation at each percentile (we focus on basic laspeyres for now)
-bysort ref_yr indkomstgruppe: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
+bysort ref_yr a: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
 replace laspeyres_t_tp1=exp(laspeyres_t_tp1)
 
 * compute the "reverse geometric" price index, which we will need to implement the second order algorithm 
-bysort ref_yr indkomstgruppe: egen double reverse_laspeyres_t_tm1=sum(expn_shr_t*log(inflation_t_tminus1^(-1)))
+bysort ref_yr a: egen double reverse_laspeyres_t_tm1=sum(expn_shr_t*log(inflation_t_tminus1^(-1)))
 replace reverse_laspeyres_t_tm1=exp(reverse_laspeyres_t_tm1)
 
 * to compute Fisher later, we also need to compute basic paasche and basic laspeyres: 
-bysort ref_yr indkomstgruppe: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
+bysort ref_yr a: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
 replace paasche_tm1_t=(paasche_tm1_t)^(-1)
-bysort ref_yr indkomstgruppe: egen double laspeyres_t_tp1_basic=sum(expn_shr_t*inflation_t_tplus1)
+bysort ref_yr a: egen double laspeyres_t_tp1_basic=sum(expn_shr_t*inflation_t_tplus1)
 
 * keep only data we need
-keep ref_yr tot_expn laspeyres_t_tp1 indkomstgruppe paasche_tm1_t laspeyres_t_tp1_basic reverse_laspeyres_t_tm1  
+keep ref_yr tot_expn laspeyres_t_tp1 a paasche_tm1_t laspeyres_t_tp1_basic reverse_laspeyres_t_tm1  
 duplicates drop
 
 * iv) define variables we need for the algorithm, reversing the order of time
-tsset indkomstgruppe ref_yr 
+tsset a ref_yr 
 gen y=log(tot_expn)
 gen Ly=L.y
 gen p=log(laspeyres_t_tp1) 

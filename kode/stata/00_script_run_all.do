@@ -28,7 +28,7 @@ import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") fi
 save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
 export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
 */
-import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
+import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\Alder_data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
 
@@ -37,10 +37,7 @@ export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data
 **** 0. Prepare Raw Data 
 ***************************************
 
-*do ${coderoot}/0a_prepare_data.do 
-*do ${coderoot}/0b_prepare_historical_data.do 
-*do ${coderoot}/0c_prepare_age_data.do 
-*do ${coderoot}/0d_prepare_historical_age_data.do 
+do ${coderoot}/0a_prepare_data.do 
 
 *******************************************************
 **** 1. Descriptive Stats Aggregate & by Income Group

@@ -14,14 +14,14 @@ replace ref_yr = 2003+(2022-ref_yr)
 * => already done in initial file
 
 * iii) compute Laspeyres inflation at each percentile (we focus on basic laspeyres for now)
-bysort ref_yr indkomstgruppe: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
+bysort ref_yr a: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
 replace laspeyres_t_tp1=exp(laspeyres_t_tp1)
 * keep only data we need
-keep ref_yr tot_expn laspeyres_t_tp1 indkomstgruppe ref_yr_original 
+keep ref_yr tot_expn laspeyres_t_tp1 a ref_yr_original 
 duplicates drop
 
 * iv) define variables we need for the algorithm, reversing the order of time
-tsset indkomstgruppe ref_yr 
+tsset a ref_yr 
 gen y=log(tot_expn)
 gen Ly=L.y
 gen p=log(laspeyres_t_tp1) 
