@@ -17,7 +17,7 @@ gen p_full = exp(y-q)*100
 * fig E2ii
 twoway connected p_naive a if ref_yr_o==2003 || connected p_full a if ref_yr_o==2003, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2003 (2022=100)")  graphregion(color(white)) xlabel(1(1)5) ///
 legend(order(1 "Group-specific Index" 2 "With NH correction") rows(2))
-graph export "$resrootfig/FigE2ii.pdf", as(pdf) replace
+graph export "$resrootfig/FigE2ii_alder.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
 replace annual_bias_percent=annual_bias_percent*100
@@ -29,7 +29,7 @@ twoway ///
     ytitle("Årlig Bias i reel forbrugsvækst (%), 2003") ///
     graphregion(color(white)) xlabel(1(1)5) ///
     legend(off)
-graph export "$resrootfig/Fig4Aii.pdf", as(pdf) replace
+graph export "$resrootfig/Fig4Aii_alder.pdf", as(pdf) replace
 
 
 * plot adjustment to real consumption in level in final year
@@ -40,7 +40,7 @@ gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 4Bii
 scatter pc_dev_real_cons a if ref_yr_o==2003 || lfit pc_dev_real_cons a if ref_yr_o==2003, xtitle("a") ytitle("Bias in 2003 Real Consumption Level, %")  graphregion(color(white)) xlabel(1(1)5) legend(off)
-graph export "$resrootfig/Fig4Bii.pdf", as(pdf) replace
+graph export "$resrootfig/Fig4Bii_alder.pdf", as(pdf) replace
 
 
 * iii) depict NH adjustment to real cumulative consumption growth 
@@ -63,5 +63,5 @@ merge 1:1 a ref_yr using "$dataroot/temp"
 keep if _merge==3
 
 twoway connected change_real_exp a || connected bias_pp a, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "2003-2022, pp (% of 2022 Nominal Expenditure)")  graphregion(color(white)) xlabel(1(1)5) legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
-graph export "$resrootfig/FigE3ii.pdf", as(pdf) replace
+graph export "$resrootfig/FigE3ii_alder.pdf", as(pdf) replace
 

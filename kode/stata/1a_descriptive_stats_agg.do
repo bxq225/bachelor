@@ -30,4 +30,4 @@ replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>200
 
 * Figure 2a
 scatter laspeyres_price_index_final ref_y, xtitle("Year") ytitle("Geometric Index (2002=100)") graphregion(color(white)) xlabel(2002(2)2022) ylabel(100(2)144)
-graph export "$resrootfig/Fig2a.pdf", as(pdf) replace 
+graph export "$resrootfig/Fig2a_alder.pdf", as(pdf) replace 

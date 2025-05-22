@@ -25,13 +25,13 @@ gen p=log(laspeyres_t_tp1)
 * v) provide reduced-form evidence on the relationship between price changes and income
 * Fig E1i
 binscatter p y, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1i.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1i_alder.pdf", as(pdf) replace 
 * Fig E1ii
 binscatter p y if ref_yr<2018, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1ii.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1ii_alder.pdf", as(pdf) replace 
 * Fig E1iii
 binscatter p y if ref_yr>2017, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1iii.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1iii_alder.pdf", as(pdf) replace 
 
 * for the analysis we need to use p from the previous year
 gen temp=L.p if ref_yr>2003

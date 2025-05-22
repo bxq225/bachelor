@@ -29,12 +29,12 @@ by a: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref
 
 * Figure 2b
 twoway connected laspeyres_price_index_final a if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2022 (2002=100)")  graphregion(color(white)) xlabel(1(1)5) 
-graph export "$resrootfig/Fig2b.pdf", as(pdf) replace 
+graph export "$resrootfig/Fig2b_alder.pdf", as(pdf) replace 
 
 * Figure E1v
 gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022
 twoway connected laspeyres_annual_infl  a if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Average Annual Geometric Inflation," "2002-2022, %")  graphregion(color(white)) xlabel(1(1)5) 
-graph export "$resrootfig/FigE1v.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1v_alder.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)
 gen temp=tot_expn*(ref_yr==2002)

@@ -26,10 +26,10 @@ by inc_p: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if
 
 * Figure 2d
 twoway connected laspeyres_price_index_final inc_p if ref_yr==2019, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2019 (1955=100)")  graphregion(color(white)) xlabel(0(5)100) 
-graph export "$resrootfig/Fig2d.pdf", as(pdf) replace 
+graph export "$resrootfig/Fig2d_alder.pdf", as(pdf) replace 
 
 * Figure E1vi
 gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2019-1955))-1)*100 if ref_yr==2019
 twoway connected laspeyres_annual_infl  inc_percentile if ref_yr==2019, xtitle("Pre-tax Income Percentile") ytitle("Average Annual Geometric Inflation," "1955-2019, %")  graphregion(color(white)) xlabel(0(5)100) 
-graph export "$resrootfig/FigE1vi.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1vi_alder.pdf", as(pdf) replace 
 
