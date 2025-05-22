@@ -6,7 +6,7 @@
 use "$dataroot/Forbrugs_Data.dta", clear
 
 * ii) generate aggregate expenditures and expenditure shares
-collapse (sum)  expn_t, by(ref_yr kategori indkomstgruppe gns_pris_indeks inflation_t_tminus1 inflation_t_tplus1)
+collapse (sum)  expn_t, by(ref_yr kategori husstand gns_pris_indeks inflation_t_tminus1 inflation_t_tplus1)
 
 replace expn_t=expn_t/5
 bysort ref_yr: egen double tot_expn=sum(expn_t)

@@ -14,7 +14,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 * aggregate overall 
-collapse (sum)  forbrug, by(ref_yr kategori indkomstgruppe gns_pris_indeks inflation_t_tminus1 inflation_t_tplus1)
+collapse (sum)  forbrug, by(ref_yr kategori husstand gns_pris_indeks inflation_t_tminus1 inflation_t_tplus1)
 
 replace forbrug=forbrug/5
 bysort ref_yr: egen double tot_expn=sum(forbrug)
@@ -79,7 +79,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr indkomstgruppe: egen double tot_expn=sum(forbrug)
+bysort ref_yr husstand: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 
@@ -102,7 +102,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr indkomstgruppe: egen double tot_expn=sum(forbrug)
+bysort ref_yr husstand: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 
@@ -126,7 +126,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr indkomstgruppe: egen double tot_expn=sum(forbrug)
+bysort ref_yr husstand: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 

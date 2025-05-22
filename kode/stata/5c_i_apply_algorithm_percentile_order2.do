@@ -30,7 +30,7 @@ gen double Lam_old = Lam
 drop Lam
 gen double Lam = .
 
-tsset indkomstgruppe ref_yr
+tsset husstand ref_yr
 
 
 ***** Initiate loop in 2004 ****
@@ -107,8 +107,8 @@ foreach i of numlist 2004 {
 
 }	
 
-sort indkomstgruppe ref
-order ref indkomstgruppe y Ly q Lq baseline_q Lam LamLq Lam_old
+sort husstand ref
+order ref husstand y Ly q Lq baseline_q Lam LamLq Lam_old
 *binscatter q first_order_q_fisher, nq(100) reportreg
 *br
 	
