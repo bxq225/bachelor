@@ -28,7 +28,7 @@ gen laspeyres_price_index_final=100
 by a: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2002 
 
 * Figure 2b
-twoway connected laspeyres_price_index_final a if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2022 (2002=100)")  graphregion(color(white)) xlabel(1(1)5) 
+twoway connected laspeyres_price_index_final a if ref_yr==2022, xtitle("Aldersgruppe") ytitle("Geometrisk indeks (2002=100)")  graphregion(color(white)) xlabel(1(1)5) 
 graph export "$resrootfig/Fig2b_alder.pdf", as(pdf) replace 
 
 * Figure E1v

@@ -25,7 +25,7 @@ replace annual_bias_percent=annual_bias_percent*100
 twoway ///
     (scatter annual_bias_percent a if ref_yr_o==2003) ///
     (lfit annual_bias_percent a if ref_yr_o==2003), ///
-    xtitle("a") ///
+    xtitle("Aldersgruppe") ///
     ytitle("Årlig Bias i reel forbrugsvækst (%), 2003") ///
     graphregion(color(white)) xlabel(1(1)5) ///
     legend(off)

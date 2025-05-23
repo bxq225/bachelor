@@ -17,7 +17,7 @@ graph export "$resrootfig/FigE2i_alder.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 
 scatter annual_bias_percent a if ref_yr==2022 || lfit annual_bias_percent a if ref_yr==2022, ///
-   xtitle("a") ///
+   xtitle("Aldersgruppe") ///
    ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
    graphregion(color(white)) xlabel(1(1)5) ///
    legend(off)
