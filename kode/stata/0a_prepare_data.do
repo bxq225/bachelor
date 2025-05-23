@@ -16,7 +16,7 @@ drop if missing(inflation_t_tplus1)
 * aggregate overall 
 collapse (sum)  forbrug, by(ref_yr kategori a inflation_t_tminus1 inflation_t_tplus1)
 
-replace forbrug=forbrug/4
+replace forbrug=forbrug/5
 bysort ref_yr: egen double tot_expn=sum(forbrug)
 gen expn_shr_t = forbrug/tot_expn
 
