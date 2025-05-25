@@ -2,3 +2,5 @@ xavier_files/
 data/
 !data/data.xlsx
 !data/prisindeks.csv
+!data/data_husstande.xlsx
+!data/Alder_data.xlsx
