@@ -67,14 +67,14 @@ do ${coderoot}/2c_algorithm_results_aggregate.do
 
 
 * with Fisher price index in the first-order algorithm 
-*do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
+do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
 
-*do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
+do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
 
 * with second-order approximation algorithm
-*do ${coderoot}/5c_i_apply_algorithm_percentile_order2.do
-*do ${coderoot}/5c_ii_apply_reverse_algorithm_percentile_order2.do
-*do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
+do ${coderoot}/5c_i_apply_algorithm_percentile_order2.do
+do ${coderoot}/5c_ii_apply_reverse_algorithm_percentile_order2.do
+do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
 /*
 ****************************************************************
 **** 6. Appendix robustness checks 
