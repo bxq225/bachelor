@@ -29,8 +29,7 @@ graph export "$resrootfig/FigE2ii.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 * fig 4Aii with tendency line
 twoway ///
-    (scatter annual_bias_percent husstand if ref_yr_o==2003) ///
-    (lfit annual_bias_percent husstand if ref_yr_o==2003), ///
+    (scatter annual_bias_percent husstand if ref_yr_o==2003), ///
     xtitle("Husstand") ///
     ytitle("Årlig Bias i reel" "forbrugsvækst (%), 2003") ///
     graphregion(color(white)) ///
@@ -47,7 +46,7 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 4Bii
-scatter pc_dev_real_cons husstand if ref_yr_o==2003 || lfit pc_dev_real_cons husstand if ref_yr_o==2003, ///
+scatter pc_dev_real_cons husstand if ref_yr_o==2003, ///
     xtitle("Husstand") ///
     ytitle("Bias i 2003 reel" "forbrugs niveau, %") ///
     graphregion(color(white)) ///

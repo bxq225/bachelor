@@ -22,7 +22,7 @@ graph export "$resrootfig/FigE2i.pdf", as(pdf) replace
 ** iii) show annual bias correction
 replace annual_bias_percent=annual_bias_percent*100
 
-scatter annual_bias_percent husstand if ref_yr==2022 || lfit annual_bias_percent husstand if ref_yr==2022, ///
+scatter annual_bias_percent husstand if ref_yr==2022, ///
    xtitle("Husstand") ///
    ytitle("Årlig Bias i reel" "forbrugsvækst (%), 2022") ///
    graphregion(color(white)) ///
@@ -39,7 +39,7 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 12d
-scatter pc_dev_real_cons husstand if ref_yr==2022 || lfit pc_dev_real_cons husstand if ref_yr==2022, ///
+scatter pc_dev_real_cons husstand if ref_yr==2022, ///
    xtitle("Husstand") ///
    ytitle("Bias i 2022 reel" "forbrugs niveau, %") ///
    graphregion(color(white)) ///
