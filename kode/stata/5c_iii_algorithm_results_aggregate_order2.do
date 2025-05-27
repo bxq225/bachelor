@@ -101,7 +101,6 @@ graph export "$resrootfig/Fig6Aii.pdf", as(pdf) replace
 * plot the annual bias 
 foreach i in annual_bias_percent_2019prices annual_bias_percent_f annual_bias_percent_2nd_order Lambda_rescaled_2nd_order {
 	replace `i'=`i'*100
-	replace `i'=0 if ref_yr==2019
 }
 
 scatter annual_bias_percent_2019prices ref_yr || scatter annual_bias_percent_f ref_yr || scatter Lambda_rescaled_2nd_order ref_yr, xtitle("Year") ytitle("Annual Bias in Real Consumption Growth, %")  graphregion(color(white)) xlabel(2003(5)2019) legend(order(1 "First-order NH correction, Geometric Laspeyres" 2 "First-order NH correction, Fisher" 3 "Second-order NH correction, Fisher") rows(3)) 
