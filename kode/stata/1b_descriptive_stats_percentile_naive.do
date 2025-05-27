@@ -20,12 +20,12 @@ keep ref_yr tot_expn laspeyres_t_tp1 geom_laspeyres_t_tp1 a
 duplicates drop
 * compute cumulative inflation 
 sort a ref_yr
-gen cum_laspeyres_t_tp1 = laspeyres_t_tp1 if ref_y==2002
-by a: replace cum_laspeyres_t_tp1=cum_laspeyres_t_tp1[_n-1]*laspeyres_t_tp1 if ref_y>2002
+gen cum_laspeyres_t_tp1 = laspeyres_t_tp1 if ref_y==2003
+by a: replace cum_laspeyres_t_tp1=cum_laspeyres_t_tp1[_n-1]*laspeyres_t_tp1 if ref_y>2003
 
 * rescale to 100 in 2002
 gen laspeyres_price_index_final=100
-by a: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2002 
+by a: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2003 
 
 * Figure 2b
 twoway connected laspeyres_price_index_final a if ref_yr==2022, ///
@@ -38,14 +38,15 @@ graph export "$resrootfig/Fig2b_alder.pdf", as(pdf) replace
 
 
 * Figure E1v
-gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022
+gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2003))-1)*100 if ref_yr==2022
 twoway connected laspeyres_annual_infl  a if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Average Annual Geometric Inflation," "2002-2022, %")  graphregion(color(white)) xlabel(1(1)5) 
 graph export "$resrootfig/FigE1v_alder.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)
-gen temp=tot_expn*(ref_yr==2002)
+gen temp=tot_expn*(ref_yr==2003)
 bysort a: egen temp2=max(temp)
 gen nominal_expenditure=tot_expn/temp2*100
+
 drop temp temp2 
 
 gen real_expenditure=nominal_expenditure/laspeyres_price_index_final*100
