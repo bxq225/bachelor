@@ -44,8 +44,8 @@ export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data
 ******************************************************
 
 do ${coderoot}/1a_descriptive_stats_agg.do
-do ${coderoot}/1b_descriptive_stats_percentile_naive.do
-
+*do ${coderoot}/1b_descriptive_stats_percentile_naive.do
+/*
 
 *******************************************
 **** 2. NH Correction - main back to 1984
