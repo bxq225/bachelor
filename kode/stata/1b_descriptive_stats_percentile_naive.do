@@ -41,7 +41,7 @@ graph export "$resrootfig/Fig2b.pdf", as(pdf) replace
 * Figure E1v
 gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022   
 twoway connected laspeyres_annual_infl  husstand if ref_yr==2022, /// 
-    xtitle("Husstand") ///
+    xtitle("") ///
     ytitle("Gennemsnitlig årlig geometrisk" "inflation, 2002-2022, %") ///
     graphregion(color(white)) ///
     xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///

@@ -16,7 +16,7 @@ gen p_full = exp(y-q)*100
 
 * fig E2ii
 twoway connected p_naive husstand if ref_yr_o==2003 || connected p_full husstand if ref_yr_o==2003, ///
-    xtitle("Husstande") ///
+    xtitle("") ///
     ytitle("Geometrisk indeks i 2003 (2022=100)") ///
     graphregion(color(white)) ///
     xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
@@ -30,7 +30,7 @@ replace annual_bias_percent=annual_bias_percent*100
 * fig 4Aii with tendency line
 twoway ///
     (scatter annual_bias_percent husstand if ref_yr_o==2003), ///
-    xtitle("Husstand") ///
+    xtitle("") ///
     ytitle("Årlig Bias i reel" "forbrugsvækst (%), 2003") ///
     graphregion(color(white)) ///
     xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///

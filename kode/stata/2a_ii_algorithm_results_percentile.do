@@ -10,7 +10,7 @@ gen p_naive = exp(y-qu)*100
 gen p_full = exp(y-q)*100
 
 twoway connected p_naive husstand if ref_yr==2022 || connected p_full husstand if ref_yr==2022, ///
-   xtitle("Husstande") ///
+   xtitle("") ///
    ytitle("Geometrisk indeks i 2022 (2003=100)")  ///
    graphregion(color(white)) ///
    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
@@ -23,7 +23,7 @@ graph export "$resrootfig/FigE2i.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 
 scatter annual_bias_percent husstand if ref_yr==2022, ///
-   xtitle("Husstand") ///
+   xtitle("") ///
    ytitle("Årlig Bias i reel" "forbrugsvækst (%), 2022") ///
    graphregion(color(white)) ///
    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
