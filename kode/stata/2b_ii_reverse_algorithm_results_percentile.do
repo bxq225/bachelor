@@ -26,7 +26,7 @@ twoway ///
     (scatter annual_bias_percent a if ref_yr_o==2003) ///
     (lfit annual_bias_percent a if ref_yr_o==2003), ///
    xtitle("Aldersgruppe", margin(t=10)) ///
-   ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
+   ytitle("Årlig Bias i reel forbrugsvækst (%), 2003") ///
    xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover", ///
         labgap(2) labsize(small) labstyle(angle(vertical))) ///
    legend(off)
