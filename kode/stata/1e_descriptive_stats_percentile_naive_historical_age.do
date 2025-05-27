@@ -31,6 +31,6 @@ collapse (mean) laspeyres_price_index_final , by(age_d)
 
 * Figure 7a
 twoway connected laspeyres_price_index_final age_d, xtitle("Age Decile") ytitle("Geometric Index in 2019 (1955=100)")  graphregion(color(white)) xlabel(1(1)10) 
-graph export "$resrootfig/Fig7a_alder.pdf", as(pdf) replace 
+graph export "$resrootfig/Fig7a_indkomst.pdf", as(pdf) replace 
 
 

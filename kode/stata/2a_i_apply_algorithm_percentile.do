@@ -10,14 +10,14 @@ use "$dataroot/Forbrugs_Data.dta", clear
 * => already done in initial file
 
 * iii) compute Laspeyres inflation at each percentile (we focus on basic laspeyres for now)
-bysort ref_yr a: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
+bysort ref_yr indkomstgruppe: egen double laspeyres_t_tp1=sum(expn_shr_t*log(inflation_t_tplus1))
 replace laspeyres_t_tp1=exp(laspeyres_t_tp1)
 * keep only data we need
-keep ref_yr tot_expn laspeyres_t_tp1 a  
+keep ref_yr tot_expn laspeyres_t_tp1 indkomstgruppe  
 duplicates drop
 
 * iv) define variables we need for the algorithm
-tsset a ref_yr 
+tsset indkomstgruppe ref_yr 
 gen y=log(tot_expn)
 gen Ly=L.y
 gen p=log(laspeyres_t_tp1) 
@@ -25,13 +25,13 @@ gen p=log(laspeyres_t_tp1)
 * v) provide reduced-form evidence on the relationship between price changes and income
 * Fig E1i
 binscatter p y, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1i_alder.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1i_indkomst.pdf", as(pdf) replace 
 * Fig E1ii
 binscatter p y if ref_yr<2018, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1ii_alder.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1ii_indkomst.pdf", as(pdf) replace 
 * Fig E1iii
 binscatter p y if ref_yr>2017, nq(100) absorb(ref_yr) xtitle("Log nominal consumption") ytitle("Log Geometric index (annual)")
-graph export "$resrootfig/FigE1iii_alder.pdf", as(pdf) replace 
+graph export "$resrootfig/FigE1iii_indkomst.pdf", as(pdf) replace 
 
 * for the analysis we need to use p from the previous year
 gen temp=L.p if ref_yr>2003
