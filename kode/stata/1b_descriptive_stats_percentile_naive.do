@@ -28,12 +28,24 @@ gen laspeyres_price_index_final=100
 by husstand: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2002 
 
 * Figure 2b
-twoway connected laspeyres_price_index_final husstand if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2022 (2002=100)")  graphregion(color(white)) xlabel(1(1)5) 
+twoway connected laspeyres_price_index_final husstand if ref_yr==2022, ///
+    xtitle("Husstandsgrupper") ///
+    ytitle("Geometric Index in 2022 (2002=100)") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    legend(off) ///
+    xsize(10) ///
+    ysize(8)
 graph export "$resrootfig/Fig2b.pdf", as(pdf) replace 
 
 * Figure E1v
-gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022
-twoway connected laspeyres_annual_infl  husstand if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Average Annual Geometric Inflation," "2002-2022, %")  graphregion(color(white)) xlabel(1(1)5) 
+gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022   
+twoway connected laspeyres_annual_infl  husstand if ref_yr==2022, /// 
+    xtitle("Husstand") ///
+    ytitle("Gennemsnitlig årlig geometrisk" "inflation, 2002-2022, %") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    ysize(6)
 graph export "$resrootfig/FigE1v.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)

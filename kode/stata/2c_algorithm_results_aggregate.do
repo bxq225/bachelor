@@ -34,12 +34,12 @@ scatter pc ref_yr, xtitle("Year") ytitle("Bias in Aggreate Real Consumption")  g
 
 merge 1:1 ref_yr using "$dataroot/temp2"
 
-scatter pc_dev_real_cons_2003 ref_yr || scatter pc_dev_real_cons ref_yr , msymbol(T) xtitle("Year") ytitle("Bias in Average Real Consumption")  graphregion(color(white)) xlabel(2003(2)2022) legend(order(1 "2003 base prices" 2 " 2022 base prices") rows(1)) ylabel(-0.5(0.1)0.2)
+scatter pc_dev_real_cons_2003 ref_yr || scatter pc_dev_real_cons ref_yr , msymbol(T) xtitle("Year") ytitle("Bias in Average Real Consumption")  graphregion(color(white)) xlabel(2003(2)2022) legend(order(1 "2003 base prices" 2 " 2022 base prices") rows(2)) ylabel(-0.5(0.1)0.2)
 graph export "$resrootfig/Fig3a.pdf", as(pdf) replace
 
 replace annual_bias_percent_2003prices=annual_bias_percent_2003prices*100
 replace annual_bias_percent=annual_bias_percent*100
 replace annual_bias_percent_2003prices=0 if ref_yr==2003
 replace annual_bias_percent=0 if ref_yr==2022
-scatter annual_bias_percent_2003prices ref_yr || scatter annual_bias_percent ref_yr , msymbol(T) xtitle("Year") ytitle("Annual Bias in Real Consumption Growth, %")  graphregion(color(white)) xlabel(2003(2)2022) legend(order(1 "2003 base prices" 2 " 2022 base prices") rows(1)) 
+scatter annual_bias_percent_2003prices ref_yr || scatter annual_bias_percent ref_yr , msymbol(T) xtitle("Year") ytitle("Annual Bias in Real Consumption Growth, %")  graphregion(color(white)) xlabel(2003(2)2022) legend(order(1 "2003 base prices" 2 " 2022 base prices") rows(2)) 
 graph export "$resrootfig/Fig3b.pdf", as(pdf) replace

@@ -15,8 +15,14 @@ gen p_full = exp(y-q)*100
 * this is identical to figure 7b, as desired 
 
 * fig E2ii
-twoway connected p_naive husstand if ref_yr_o==2003 || connected p_full husstand if ref_yr_o==2003, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2003 (2022=100)")  graphregion(color(white)) xlabel(1(1)5) ///
-legend(order(1 "Group-specific Index" 2 "With NH correction") rows(2))
+twoway connected p_naive husstand if ref_yr_o==2003 || connected p_full husstand if ref_yr_o==2003, ///
+    xtitle("Husstande") ///
+    ytitle("Geometrisk indeks i 2003 (2022=100)") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    legend(order(1 "Husstand indeks" 2 "Med NH korrektion") rows(2)) ///
+    xsize(10) ///
+    ysize(6)
 graph export "$resrootfig/FigE2ii.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
@@ -25,10 +31,12 @@ replace annual_bias_percent=annual_bias_percent*100
 twoway ///
     (scatter annual_bias_percent husstand if ref_yr_o==2003) ///
     (lfit annual_bias_percent husstand if ref_yr_o==2003), ///
-    xtitle("husstand") ///
-    ytitle("Årlig Bias i reel forbrugsvækst (%), 2003") ///
-    graphregion(color(white)) xlabel(1(1)5) ///
-    legend(off)
+    xtitle("Husstand") ///
+    ytitle("Årlig Bias i reel" "forbrugsvækst (%), 2003") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    legend(off) ///
+    ysize(6)
 graph export "$resrootfig/Fig4Aii.pdf", as(pdf) replace
 
 
@@ -39,7 +47,13 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 4Bii
-scatter pc_dev_real_cons husstand if ref_yr_o==2003 || lfit pc_dev_real_cons husstand if ref_yr_o==2003, xtitle("husstand") ytitle("Bias in 2003 Real Consumption Level, %")  graphregion(color(white)) xlabel(1(1)5) legend(off)
+scatter pc_dev_real_cons husstand if ref_yr_o==2003 || lfit pc_dev_real_cons husstand if ref_yr_o==2003, ///
+    xtitle("Husstand") ///
+    ytitle("Bias i 2003 reel" "forbrugs niveau, %") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    legend(off) ///
+    ysize(6)
 graph export "$resrootfig/Fig4Bii.pdf", as(pdf) replace
 
 
@@ -62,6 +76,13 @@ rename ref_yr_o ref_yr
 merge 1:1 husstand ref_yr using "$dataroot/temp"
 keep if _merge==3
 
-twoway connected change_real_exp husstand || connected bias_pp husstand, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "2003-2022, pp (% of 2022 Nominal Expenditure)")  graphregion(color(white)) xlabel(1(1)5) legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
+twoway connected change_real_exp husstand || connected bias_pp husstand, ///
+    xtitle("Husstand") ///
+    ytitle("Bias i kumulativ reel forbrugs-" "vækst 2002-2022, pp " "(% af 2022 nominelle udgifter)") ///
+    graphregion(color(white)) ///
+    xlabel(1 `" "Enlige under 60" "år uden børn" "' 2 `" "Enlig 60 år og" "over uden børn" "' 3 "Enlige med børn" 4 `" "2 voksne, hoved-" "person under 60" "år uden børn" "' 5 `" "2 voksne," "hovedperson 60 år" "og over uden børn" "' 6 "2 voksne med børn" 7 `" "Husstande med" "mindst 3 voksne" "', angle(90)) ///
+    legend(order(1 "Fra husstand indeks" 2 "Fra NH korrektion") rows(2)) ///
+    xsize(12) ///
+    ysize(8)
 graph export "$resrootfig/FigE3ii.pdf", as(pdf) replace
 
