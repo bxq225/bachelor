@@ -38,6 +38,7 @@ export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data
 ***************************************
 
 do ${coderoot}/0a_prepare_data.do 
+/*
 
 *******************************************************
 **** 1. Descriptive Stats Aggregate & by Income Group
