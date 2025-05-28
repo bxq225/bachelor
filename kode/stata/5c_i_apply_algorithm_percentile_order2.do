@@ -6,7 +6,7 @@
 * Load file & initate the loop with the first-order approximation
 use "$resrootdata/nh_percentiles_fisher.dta", clear
 drop beta1 beta2
-* recall that in this dataset, p is the fisher index from t-1 to t (which by normalization is set to 0 in the first period, 2003)
+* recall that in this dataset, p is the fisher index from t-1 to t (which by normalization is set to 0 in the first period, 2008)
 rename p p_fisher 
 
 * set up the 
@@ -30,12 +30,12 @@ gen double Lam_old = Lam
 drop Lam
 gen double Lam = .
 
-tsset a ref_yr
+tsset region ref_yr
 
 
-***** Initiate loop in 2004 ****
+***** Initiate loop in 2009 ****
 
-foreach i of numlist 2004 {
+foreach i of numlist 2009 {
     
 	display "running loop for year `i'"
 	
@@ -79,7 +79,7 @@ foreach i of numlist 2004 {
 		replace beta1 = b_t2[1,1] if ref_yr>=`i' 
 		replace beta2 = b_t2[1,2] if ref_yr>=`i'
 
-		* generate lagged lambda (for year after 2004 we take the converged value from the previous step so there is no lambda)
+		* generate lagged lambda (for year after 2009 we take the converged value from the previous step so there is no lambda)
 		replace LamLq = 0 if ref_yr==`i'
 
 		* generate lambda: 
@@ -90,8 +90,8 @@ foreach i of numlist 2004 {
 
 		* check convergence 
 		replace dev_q = abs(q-baseline_q)					     if ref_yr==`i'
-		*gen double dev_ratio_growth = abs(((q-Lq)/(baseline_q-Lq)-1)*100) if ref_yr==2004 
-		*gen double dev_ratio_lambda = abs(  ((y-Ly-p_fisher)/(q-Lq)-1)/((y-Ly-p_fisher)/(baseline_q-Lq)-1)  ) if ref_yr==2004 
+		*gen double dev_ratio_growth = abs(((q-Lq)/(baseline_q-Lq)-1)*100) if ref_yr==2009 
+		*gen double dev_ratio_lambda = abs(  ((y-Ly-p_fisher)/(q-Lq)-1)/((y-Ly-p_fisher)/(baseline_q-Lq)-1)  ) if ref_yr==2009 
 		sum dev_q if ref_yr==`i', d
 		* update divegence
 		local z = r(max)
@@ -107,22 +107,22 @@ foreach i of numlist 2004 {
 
 }	
 
-sort a ref
-order ref a y Ly q Lq baseline_q Lam LamLq Lam_old
+sort region ref
+order ref region y Ly q Lq baseline_q Lam LamLq Lam_old
 *binscatter q first_order_q_fisher, nq(100) reportreg
 *br
 	
 ***** Now run loops for all other years ****
 	
-foreach i of numlist 2005(1)2022 {
-*foreach i of numlist 2005 {
+foreach i of numlist 2010(1)2022 {
+*foreach i of numlist 2010 {
  	
 	display "running loop for year `i'"
 	
 	* define tolerance until convergence 
 	local z = `i'
 	
-	while `z' > 0.0000001 {
+	while `z' > 0.1 {
 	
 		display "deviation = `z' log points"
 	
@@ -170,8 +170,8 @@ foreach i of numlist 2005(1)2022 {
 
 		* check convergence 
 		replace dev_q = abs(q-baseline_q)  if ref_yr==`i'
-		*gen double dev_ratio_growth = abs(((q-Lq)/(baseline_q-Lq)-1)*100) if ref_yr==2004 
-		*gen double dev_ratio_lambda = abs(  ((y-Ly-p_fisher)/(q-Lq)-1)/((y-Ly-p_fisher)/(baseline_q-Lq)-1)  ) if ref_yr==2004 
+		*gen double dev_ratio_growth = abs(((q-Lq)/(baseline_q-Lq)-1)*100) if ref_yr==2009 
+		*gen double dev_ratio_lambda = abs(  ((y-Ly-p_fisher)/(q-Lq)-1)/((y-Ly-p_fisher)/(baseline_q-Lq)-1)  ) if ref_yr==2009 
 		sum dev_q if ref_yr==`i', d
 		* update divergence
 		local z = r(max)

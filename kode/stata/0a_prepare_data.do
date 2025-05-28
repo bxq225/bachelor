@@ -14,7 +14,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 * aggregate overall 
-collapse (sum)  forbrug, by(ref_yr kategori a inflation_t_tminus1 inflation_t_tplus1)
+collapse (sum)  forbrug, by(ref_yr kategori region inflation_t_tminus1 inflation_t_tplus1)
 
 replace forbrug=forbrug/5
 bysort ref_yr: egen double tot_expn=sum(forbrug)
@@ -39,17 +39,17 @@ gen double fisher_t_tp1 = sqrt(paasche_t_tp1*laspeyres_t_tp1)
 drop paasche_tm1_t
 
 foreach i in laspeyres geom_laspeyres paasche fisher {
-gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2002
-replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2002
+gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2007
+replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2007
 }
 
-scatter cum_laspeyres_t_tp1 ref_y, xlabel(2002(2)2022) ytitle("Laspeyres Inflation") xtitle("Aarstal") 
+scatter cum_laspeyres_t_tp1 ref_y, xlabel(2007(2)2022) ytitle("Laspeyres Inflation") xtitle("Aarstal") 
 graph export "$resrootfig/Fig0B_alder.pdf", as(pdf) replace
 
 scatter tot_expn ref_y 
 
 gen double real_expn = tot_expn/cum_geom_laspeyres_t_tp1[_n-1]
-scatter real_expn ref_y, xlabel(2002(2)2022) ytitle("Reel Udgifter") xtitle("Aarstal") 
+scatter real_expn ref_y, xlabel(2007(2)2022) ytitle("Reel Udgifter") xtitle("Aarstal") 
 graph export "$resrootfig/Fig0A_alder.pdf", as(pdf) replace
 
 * also keep track of results with fisher index for robustness analysis
@@ -79,7 +79,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr a: egen double tot_expn=sum(forbrug)
+bysort ref_yr region: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 
@@ -102,7 +102,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr a: egen double tot_expn=sum(forbrug)
+bysort ref_yr region: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 
@@ -126,7 +126,7 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 
-bysort ref_yr a: egen double tot_expn=sum(forbrug)
+bysort ref_yr region: egen double tot_expn=sum(forbrug)
 
 gen double expn_shr_t = forbrug/tot_expn
 rename forbrug expn_t 

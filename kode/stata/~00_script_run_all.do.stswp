@@ -28,7 +28,7 @@ import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") fi
 save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
 export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
 */
-import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\Alder_data.xlsx",sheet("data") first
+import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\Region_data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
 
@@ -36,7 +36,7 @@ export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data
 ***************************************
 **** 0. Prepare Raw Data 
 ***************************************
-
+/*
 do ${coderoot}/0a_prepare_data.do 
 
 
@@ -69,9 +69,10 @@ do ${coderoot}/2c_algorithm_results_aggregate.do
 do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
 
 do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
-
+*/
 * with second-order approximation algorithm
 do ${coderoot}/5c_i_apply_algorithm_percentile_order2.do
+/*
 do ${coderoot}/5c_ii_apply_reverse_algorithm_percentile_order2.do
 do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
 /*
