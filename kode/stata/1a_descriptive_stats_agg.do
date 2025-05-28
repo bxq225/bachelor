@@ -11,7 +11,7 @@ collapse (sum)  expn_t, by(ref_yr kategori husstand gns_pris_indeks inflation_t_
 replace expn_t=expn_t/5
 bysort ref_yr: egen double tot_expn=sum(expn_t)
 *bysort ref_yr: egen double tot_expn_indkomst=sum(expn_t)
-gen expn_shr_t = expn_t/tot_expn
+gen expn_shr_t = expn_t/tot_expn    
 
 * iii) compute Laspeyres inflation
 bysort ref_yr: egen laspeyres_t_tp1=sum(expn_shr_t*inflation_t_tplus1)
