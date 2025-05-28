@@ -31,14 +31,14 @@ by region: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 i
 twoway connected laspeyres_price_index_final region if ref_yr==2022, ///
     ytitle("Geometrisk indeks (2007=100)") ///
     xtitle("") ///
-    xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland", ///
+    xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland", ///
         labstyle(angle(vertical)) labsize(vsmall)) ///
     graphregion(color(white) margin(b=16))
 graph export "$resrootfig/Fig2b_region.pdf", as(pdf) replace 
 
 * Figure E1v
 gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2008))-1)*100 if ref_yr==2022
-twoway connected laspeyres_annual_infl  region if ref_yr==2022, xtitle("Region") ytitle("Average Annual Geometric Inflation," "2007-2022, %")  graphregion(color(white))  xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland", ///
+twoway connected laspeyres_annual_infl  region if ref_yr==2022, xtitle("Region") ytitle("Average Annual Geometric Inflation," "2007-2022, %")  graphregion(color(white))  xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland", ///
         labgap(2) labsize(small) labstyle(angle(vertical)))
 graph export "$resrootfig/FigE1v_region.pdf", as(pdf) replace 
 

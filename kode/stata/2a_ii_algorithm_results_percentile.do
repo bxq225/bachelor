@@ -9,8 +9,8 @@ use "$resrootdata/nh_percentiles.dta", clear
 gen p_naive = exp(y-qu)*100
 gen p_full = exp(y-q)*100
 
-twoway connected p_naive region if ref_yr==2022 || connected p_full region if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2022 (1984=100)")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") ///
-legend(order(1 "Group-specific Index" 2 "With NH correction") rows(2))
+twoway connected p_naive region if ref_yr==2022 || connected p_full region if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2022 (1984=100)")  graphregion(color(white)) xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland") ///
+legend(order(1 "Region Indeks" 2 "With NH correction") rows(2))
 graph export "$resrootfig/FigE2i_region.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
@@ -19,7 +19,7 @@ replace annual_bias_percent=annual_bias_percent*100
 scatter annual_bias_percent region if ref_yr==2022, ///
    xtitle("", margin(t=10)) ///
    ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
-   xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland", ///
+   xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland", ///
         labgap(2) labsize(small) labstyle(angle(vertical))) ///
    legend(off) ///
    graphregion(color(white) margin(b=16))
@@ -33,7 +33,7 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 12d
-scatter pc_dev_real_cons region if ref_yr==2022, xtitle("") ytitle("Bias i 2022 reel forbrugs niveau, %")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") legend(off) ///
+scatter pc_dev_real_cons region if ref_yr==2022, xtitle("") ytitle("Bias i 2022 reel forbrugs niveau, %")  graphregion(color(white)) xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland") legend(off) ///
    graphregion(color(white) margin(b=16))
 graph export "$resrootfig/Fig4Bi_region.pdf", as(pdf) replace
 
@@ -53,5 +53,5 @@ gen bias_pp=growth_qu_pp-growth_q_pp
 merge 1:1 region ref_yr using "$dataroot/temp"
 keep if _merge==3
 
-twoway connected change_real_exp region || connected bias_pp region, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "1984-2022, pp (% of 1984 Nominal Expenditure)")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
+twoway connected change_real_exp region || connected bias_pp region, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "1984-2022, pp (% of 1984 Nominal Expenditure)")  graphregion(color(white)) xlabel(1 "Hovedstaden" 2 "Sjælland" 3 "Syddanmark" 4 "Midtjylland" 5 "Nordjylland") legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
 graph export "$resrootfig/FigE3i_region.pdf", as(pdf) replace
