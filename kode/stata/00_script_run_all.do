@@ -4,13 +4,13 @@ clear
 **** 0. Globals to Be Specified
 ***************************************
 
-global path "C:\Users/marti/Documents/bachelor"
+global path "F:\bachelor"
 
-global dataroot "C:\Users/marti/Documents/bachelor/data"
-global coderoot "C:\Users/marti/Documents/bachelor/kode/stata"
-global resrootfig "C:\Users/marti/Documents/bachelor/data/final_data/final_figures"
-global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
-global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
+global dataroot "F:\bachelor/data"
+global coderoot "F:\bachelor/kode/stata"
+global resrootfig "F:\bachelor/data/final_figures"
+global resrootdata "F:\bachelor/data/final_data/results"
+global datarootrobustness "F:\bachelor/data/final_data/robustness_datasets"
 /*
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
@@ -23,15 +23,15 @@ global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/
 ***************************************
 **** 0. Save the data as .dta format 
 ***************************************
+
+import excel "F:\bachelor\data\data_husstande.xlsx",sheet("data") first
+save "F:\bachelor\data\data.dta", replace
+export delimited using F:\bachelor\data\data.csv, replace
 /*
-import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") first
-save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
-export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
-*/
-import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\Alder_data.xlsx",sheet("data") first
+import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
-
+*/
 
 ***************************************
 **** 0. Prepare Raw Data 
@@ -43,38 +43,34 @@ do ${coderoot}/0a_prepare_data.do
 **** 1. Descriptive Stats Aggregate & by Income Group
 ******************************************************
 
-*do ${coderoot}/1a_descriptive_stats_agg.do
-*do ${coderoot}/1b_descriptive_stats_percentile_naive.do
-*do ${coderoot}/1c_descriptive_stats_agg_historical.do
-*do ${coderoot}/1d_descriptive_stats_percentile_naive_historical.do
-*do ${coderoot}/1e_descriptive_stats_percentile_naive_historical_age.do
+do ${coderoot}/1a_descriptive_stats_agg.do
+do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 
 *******************************************
 **** 2. NH Correction - main back to 1984
 *******************************************
 
 * first period as base
-*do ${coderoot}/2a_i_apply_algorithm_percentile.do
+do ${coderoot}/2a_i_apply_algorithm_percentile.do
 
-*do ${coderoot}/2a_ii_algorithm_results_percentile.do
+do ${coderoot}/2a_ii_algorithm_results_percentile.do
 
 * last period as base 
-*do ${coderoot}/2b_i_apply_reverse_algorithm_percentile.do
-*do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
+do ${coderoot}/2b_i_apply_reverse_algorithm_percentile.do
+do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
 
 * aggregate results 
-*do ${coderoot}/2c_algorithm_results_aggregate.do
+do ${coderoot}/2c_algorithm_results_aggregate.do
 
 
 * with Fisher price index in the first-order algorithm 
-*do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
-
-*do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
+do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
+do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
 
 * with second-order approximation algorithm
-*do ${coderoot}/5c_i_apply_algorithm_percentile_order2.do
-*do ${coderoot}/5c_ii_apply_reverse_algorithm_percentile_order2.do
-*do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
+do ${coderoot}/5c_i_apply_algorithm_percentile_order2.do
+do ${coderoot}/5c_ii_apply_reverse_algorithm_percentile_order2.do
+do ${coderoot}/5c_iii_algorithm_results_aggregate_order2.do
 /*
 ****************************************************************
 **** 6. Appendix robustness checks 
