@@ -65,7 +65,7 @@ do ${coderoot}/2c_algorithm_results_aggregate.do
 
 * with Fisher price index in the first-order algorithm 
 do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
-/*
+
 do ${coderoot}/5b_apply_reverse_algorithm_percentile_fisher.do
 
 * with second-order approximation algorithm
