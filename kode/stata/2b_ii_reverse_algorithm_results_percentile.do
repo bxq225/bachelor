@@ -15,8 +15,8 @@ gen p_full = exp(y-q)*100
 * this is identical to figure 7b, as desired 
 
 * fig E2ii
-twoway connected p_naive a if ref_yr_o==2003 || connected p_full a if ref_yr_o==2003, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2003 (2022=100)")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") ///
-legend(order(1 "Group-specific Index" 2 "With NH correction") rows(2))
+twoway connected p_naive a if ref_yr_o==2003 || connected p_full a if ref_yr_o==2003, xtitle("") ytitle("Geometrisk Indeks i 2003 (2022=100)")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") ///
+legend(order(1 "Alder inflation Indeks" 2 "Korrigeret Indeks") rows(2))
 graph export "$resrootfig/FigE2ii_alder.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
