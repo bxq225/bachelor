@@ -15,22 +15,22 @@ gen p_full = exp(y-q)*100
 * this is identical to figure 7b, as desired 
 
 * fig E2ii
-twoway connected p_naive region if ref_yr_o==2008 || connected p_full region if ref_yr_o==2008, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2008 (2022=100)")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") ///
+twoway connected p_naive region if ref_yr_o==2008, xtitle("Pre-tax Income Percentile") ytitle("Geometric Index in 2008 (2022=100)")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") ///
 legend(order(1 "Group-specific Index" 2 "With NH correction") rows(2))
-graph export "$resrootfig/FigE2ii_alder.pdf", as(pdf) replace
+graph export "$resrootfig/FigE2ii_region.pdf", as(pdf) replace
 
 ** iii) show annual bias correction
 replace annual_bias_percent=annual_bias_percent*100
 * fig 4Aii with tendency line
 twoway ///
-    (scatter annual_bias_percent region if ref_yr_o==2008) ///
-    (qfit annual_bias_percent region if ref_yr_o==2008), ///
-   xtitle("Aldersgruppe", margin(t=10)) ///
+    (scatter annual_bias_percent region if ref_yr_o==2008), ///
+   xtitle("", margin(t=10)) ///
    ytitle("Årlig Bias i reel forbrugsvækst (%), 2008") ///
-   xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover", ///
-        labgap(2) labsize(small) labstyle(angle(vertical))) ///
-   legend(off)
-graph export "$resrootfig/Fig4Aii_alder.pdf", as(pdf) replace
+   xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland", ///
+        labgap(2) labsize(Vsmall) labstyle(angle(vertical))) ///
+   legend(off) ///
+   graphregion(color(white) margin(b=16))
+graph export "$resrootfig/Fig4Aii_region.pdf", as(pdf) replace
 
 
 * plot adjustment to real consumption in level in final year
@@ -40,8 +40,9 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 4Bii
-scatter pc_dev_real_cons region if ref_yr_o==2008 || lfit pc_dev_real_cons region if ref_yr_o==2008, xtitle("region") ytitle("Bias in 2008 Real Consumption Level, %")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") legend(off)
-graph export "$resrootfig/Fig4Bii_alder.pdf", as(pdf) replace
+scatter pc_dev_real_cons region if ref_yr_o==2008, xtitle("") ytitle("Bias in 2008 Real Consumption Level, %")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") legend(off) ///
+   graphregion(color(white) margin(b=16))
+graph export "$resrootfig/Fig4Bii_region.pdf", as(pdf) replace
 
 
 * iii) depict NH adjustment to real cumulative consumption growth 
@@ -63,6 +64,6 @@ rename ref_yr_o ref_yr
 merge 1:1 region ref_yr using "$dataroot/temp"
 keep if _merge==3
 
-twoway connected change_real_exp region || connected bias_pp region, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "2008-2022, pp (% of 2022 Nominal Expenditure)")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
-graph export "$resrootfig/FigE3ii_alder.pdf", as(pdf) replace
+twoway connected change_real_exp region || connected bias_pp region, xtitle("Pre-tax Income Percentile") ytitle("Bias in Cumulative Real Consumption Growth" "2008-2022, pp (% of 2022 Nominal Expenditure)")  graphregion(color(white)) xlabel(1 "Region Hovedstaden" 2 "Region Sjælland" 3 "Region Syddanmark" 4 "Region Midtjylland" 5 "Region Nordjylland") legend(order(1 "From Group-specific Index" 2 "From NH correction") rows(2))
+graph export "$resrootfig/FigE3ii_region.pdf", as(pdf) replace
 

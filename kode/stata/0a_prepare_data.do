@@ -43,14 +43,14 @@ gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2007
 replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2007
 }
 
-scatter cum_laspeyres_t_tp1 ref_y, xlabel(2007(2)2022) ytitle("Laspeyres Inflation") xtitle("Aarstal") 
-graph export "$resrootfig/Fig0B_alder.pdf", as(pdf) replace
+scatter cum_laspeyres_t_tp1 ref_y, xlabel(2008(2)2022) ytitle("Laspeyres Inflation") xtitle("") 
+graph export "$resrootfig/Fig0B_region.pdf", as(pdf) replace
 
 scatter tot_expn ref_y 
 
 gen double real_expn = tot_expn/cum_geom_laspeyres_t_tp1[_n-1]
-scatter real_expn ref_y, xlabel(2007(2)2022) ytitle("Reel Udgifter") xtitle("Aarstal") 
-graph export "$resrootfig/Fig0A_alder.pdf", as(pdf) replace
+scatter real_expn ref_y, xlabel(2008(2)2022) ytitle("Reel Udgifter") xtitle("") 
+graph export "$resrootfig/Fig0A_region.pdf", as(pdf) replace
 
 * also keep track of results with fisher index for robustness analysis
 gen double real_expn_fisher = tot_expn/cum_fisher_t_tp1[_n-1]
