@@ -3,7 +3,7 @@ clear
 ***************************************
 **** 0. Globals to Be Specified
 ***************************************
-/*
+
 global path "C:\Users/marti/Documents/bachelor"
 
 global dataroot "C:\Users/marti/Documents/bachelor/data"
@@ -11,7 +11,7 @@ global coderoot "C:\Users/marti/Documents/bachelor/kode/stata"
 global resrootfig "C:\Users/marti/Documents/bachelor/data/final_data/final_figures"
 global resrootdata "C:\Users/marti/Documents/bachelor/data/final_data/results"
 global datarootrobustness "C:\Users/marti/Documents/bachelor/data/final_data/robustness_datasets"
-*/
+/*
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
@@ -19,7 +19,7 @@ global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata
 global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/Final_figures"
 global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
-
+*/
 ***************************************
 **** 0. Save the data as .dta format 
 ***************************************
