@@ -17,11 +17,12 @@ graph export "$resrootfig/FigE2i_alder.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 
 scatter annual_bias_percent a if ref_yr==2022 || qfit annual_bias_percent a if ref_yr==2022, ///
-   xtitle("Aldersgruppe", margin(t=10)) ///
+   xtitle("", margin(t=10)) ///
    ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
    xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover", ///
         labgap(2) labsize(small) labstyle(angle(vertical))) ///
-   legend(off)
+   legend(off) ///
+    graphregion(margin(b=18))
 graph export "$resrootfig/Fig4Ai_alder.pdf", as(pdf) replace
 
 
@@ -32,7 +33,7 @@ foreach i in y qu q {
 gen pc_dev_real_cons = (qu_level-q_level)/qu_level*100
 
 * fig 12d
-scatter pc_dev_real_cons a if ref_yr==2022 || lfit pc_dev_real_cons a if ref_yr==2022, xtitle("Aldersgruppe") ytitle("Bias i 2022 reel forbrugs niveau, %")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") legend(off)
+scatter pc_dev_real_cons a if ref_yr==2022 || lfit pc_dev_real_cons a if ref_yr==2022, xtitle("") ytitle("Bias i 2022 reel forbrugs niveau, %")  graphregion(color(white)) xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover") legend(off)
 graph export "$resrootfig/Fig4Bi_alder.pdf", as(pdf) replace
 
 * iii) depict NH adjustment to real cumulative consumption growth 

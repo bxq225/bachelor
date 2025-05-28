@@ -31,9 +31,10 @@ by a: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref
 twoway connected laspeyres_price_index_final a if ref_yr==2022, ///
     ytitle("Geometrisk indeks (2002=100)") ///
     xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover", ///
-        labgap(2) labsize(small) labstyle(angle(vertical))) ///
-    xtitle("Aldersgruppe", margin(t=10)) ///
-    ylabel(135(5)150)
+        labgap(2) labsize(vsmall) labstyle(angle(vertical))) ///
+    xtitle("", margin(t=10)) ///
+    ylabel(135(5)150) ///
+    graphregion(margin(b=18))
 graph export "$resrootfig/Fig2b_alder.pdf", as(pdf) replace 
 
 
