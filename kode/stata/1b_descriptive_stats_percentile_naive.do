@@ -30,16 +30,19 @@ by indkomstgruppe: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-
 * Figure 2b
 twoway connected laspeyres_price_index_final indkomstgruppe if ref_yr==2022, ///
     ytitle("Geometrisk indeks (2002=100)") ///
-    xlabel(1 "under 30 aar" 2 "30-44 aar" 3 "45-59 aar" 4 "60 - 74 aar" 5 "75 aar og derover", ///
-        labgap(2) labsize(small) labstyle(angle(vertical))) ///
-    xtitle("Aldersgruppe", margin(t=10)) ///
-    ylabel(135(5)150)
+    xlabel(1(1)5) ///
+    xtitle("") ///
+    ylabel(140(1)145)
 graph export "$resrootfig/Fig2b_indkomst.pdf", as(pdf) replace 
 
 
 * Figure E1v
 gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022
-twoway connected laspeyres_annual_infl  indkomstgruppe if ref_yr==2022, xtitle("Pre-tax Income Percentile") ytitle("Average Annual Geometric Inflation," "2002-2022, %")  graphregion(color(white)) xlabel(1(1)5) 
+twoway connected laspeyres_annual_infl  indkomstgruppe if ref_yr==2022, ///
+    xtitle("") ///
+    ytitle("Gennemsnitlig aarlig geometrisk inflation," "2002-2022, %") ///
+    graphregion(color(white)) ///
+    xlabel(1(1)5) 
 graph export "$resrootfig/FigE1v_indkomst.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)
