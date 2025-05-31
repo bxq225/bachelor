@@ -20,6 +20,8 @@ replace forbrug=forbrug/5
 bysort ref_yr: egen double tot_expn=sum(forbrug)
 gen expn_shr_t = forbrug/tot_expn
 
+
+
 bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
 replace paasche_tm1_t=1/paasche_tm1_t
 bysort ref_yr: egen double laspeyres_t_tp1=sum(expn_shr_t*inflation_t_tplus1)
