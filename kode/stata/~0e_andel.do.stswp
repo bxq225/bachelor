@@ -1,0 +1,16 @@
+clear
+import delimited "$dataroot/data.csv"
+
+drop gns_pris_indeks
+drop inflation_t_tminus1
+drop inflation_t_tplus1
+drop if ref_yr==2023
+
+* Calculate the group total of 'forbrug'
+gen forbrug_total = .
+bysort indkomstgruppe ref_yr (forbrug): replace forbrug_total = sum(forbrug)
+bysort indkomstgruppe ref_yr (forbrug): replace forbrug_total = forbrug_total[_N]
+
+
+sort kategori indkomstgruppe ref_yr
+
