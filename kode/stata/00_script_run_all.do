@@ -28,6 +28,10 @@ import excel "F:\bachelor\data\data_indkomstgrupper.xlsx",sheet("data") first
 save "F:\bachelor\data\data.dta", replace
 export delimited using F:\bachelor\data\data.csv, replace
 /*
+import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") first
+save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
+export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
+*/
 import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
@@ -37,7 +41,9 @@ export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data
 **** 0. Prepare Raw Data 
 ***************************************
 
-do ${coderoot}/0a_prepare_data.do 
+* do ${coderoot}/0a_prepare_data.do 
+do ${coderoot}/0e_andel.do 
+/*
 
 *******************************************************
 **** 1. Descriptive Stats Aggregate & by Income Group
@@ -46,13 +52,14 @@ do ${coderoot}/0a_prepare_data.do
 do ${coderoot}/1a_descriptive_stats_agg.do
 do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 
+
 *******************************************
 **** 2. NH Correction - main back to 1984
 *******************************************
 
 * first period as base
 do ${coderoot}/2a_i_apply_algorithm_percentile.do
-/*
+
 do ${coderoot}/2a_ii_algorithm_results_percentile.do
 
 * last period as base 
@@ -62,7 +69,7 @@ do ${coderoot}/2b_ii_reverse_algorithm_results_percentile.do
 * aggregate results 
 do ${coderoot}/2c_algorithm_results_aggregate.do
 
-
+/*
 * with Fisher price index in the first-order algorithm 
 do ${coderoot}/5a_apply_algorithm_percentile_fisher.do
 

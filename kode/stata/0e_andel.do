@@ -1,0 +1,41 @@
+clear
+import delimited "$dataroot/data.csv"
+
+drop gns_pris_indeks
+drop inflation_t_tminus1
+drop inflation_t_tplus1
+drop if ref_yr==2023
+
+* Calculate the group total of 'forbrug'
+gen forbrug_total = .
+bysort indkomstgruppe ref_yr (forbrug): replace forbrug_total = sum(forbrug)
+bysort indkomstgruppe ref_yr (forbrug): replace forbrug_total = forbrug_total[_N]
+
+gen expn_shr_t = forbrug/forbrug_total
+
+sort kategori indkomstgruppe ref_yr
+
+*keep if beskrivelse == "Foedevarer"
+drop if indkomstgruppe==5 & indkomstgruppe==4 & indkomstgruppe==3 & indkomstgruppe==2
+/*
+gen expn_shr_t_graph = expn_shr_t*100
+graph bar expn_shr_t_graph kategori
+
+/*
+twoway (line expn_shr_t_graph ref_yr if indkomstgruppe==1, lcolor(blue) lpattern(solid)) ///
+    (line expn_shr_t_graph ref_yr if indkomstgruppe==5, lcolor(pink) lpattern(solid)), ///
+    xlabel(2002(2)2022) ytitle("Andel af udgifter i %") xtitle("Aarstal") ///
+    legend(order(1 "Indkomstgruppe 1" 2 "Indkomstgruppe 5")) ///)
+
+graph export "$resrootfig/Fig1andel_indkomst.pdf", as(pdf) replace
+/*
+twoway (line expn_shr_t ref_yr if indkomstgruppe==1, lcolor(blue) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==2, lcolor(red) lpattern(dot)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==3, lcolor(green) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==4, lcolor(black) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==5, lcolor(pink) lpattern(solid)), ///
+    xlabel(2002(2)2022) ytitle("Andel af udgifter") xtitle("Aarstal") ///
+    legend(order(1 "Indkomstgruppe 1" 2 "Indkomstgruppe 2" 3 "Indkomstgruppe 3"4 "Indkomstgruppe 4" 5 "Indkomstgruppe 5")) ///)
+
+
+
