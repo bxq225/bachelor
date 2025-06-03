@@ -9,7 +9,7 @@ global path "F:\bachelor"
 global dataroot "F:\bachelor/data"
 global coderoot "F:\bachelor/kode/stata"
 global resrootfig "F:\bachelor/data/final_figures"
-global resrootdata "F:\bachelor/data/final_data/results"
+global resrootdata "F:\bachelor/data/final_data"
 global datarootrobustness "F:\bachelor/data/final_data/robustness_datasets"
 /*
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
@@ -52,7 +52,7 @@ do ${coderoot}/1b_descriptive_stats_percentile_naive.do
 
 * first period as base
 do ${coderoot}/2a_i_apply_algorithm_percentile.do
-
+/*
 do ${coderoot}/2a_ii_algorithm_results_percentile.do
 
 * last period as base 
