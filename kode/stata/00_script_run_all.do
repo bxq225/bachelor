@@ -24,17 +24,14 @@ global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/
 **** 0. Save the data as .dta format 
 ***************************************
 
-import excel "F:\bachelor\data\data_indkomstgrupper.xlsx",sheet("data") first
-save "F:\bachelor\data\data.dta", replace
-export delimited using F:\bachelor\data\data.csv, replace
 /*
 import excel "C:\Users\marti\Documents\bachelor\data\data.xlsx",sheet("data") first
 save "C:\Users\marti\Documents\bachelor\data\data.dta", replace
 export delimited using C:\Users\marti\Documents\bachelor\data\data.csv, replace
 */
-import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
-save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
-export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
+import excel "F:\bachelor\data\data_indkomstgrupper.xlsx",sheet("data") first
+save "F:\bachelor\data\data.dta", replace
+export delimited using F:\bachelor\data\data.csv, replace
 */
 
 ***************************************
