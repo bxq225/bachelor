@@ -15,9 +15,13 @@ gen expn_shr_t = forbrug/forbrug_total
 
 sort kategori indkomstgruppe ref_yr
 
-keep if beskrivelse == "Foedevarer"
+*keep if beskrivelse == "Foedevarer"
+drop if indkomstgruppe==5 & indkomstgruppe==4 & indkomstgruppe==3 & indkomstgruppe==2
+/*
 gen expn_shr_t_graph = expn_shr_t*100
+graph bar expn_shr_t_graph kategori
 
+/*
 twoway (line expn_shr_t_graph ref_yr if indkomstgruppe==1, lcolor(blue) lpattern(solid)) ///
     (line expn_shr_t_graph ref_yr if indkomstgruppe==5, lcolor(pink) lpattern(solid)), ///
     xlabel(2002(2)2022) ytitle("Andel af udgifter i %") xtitle("Aarstal") ///
