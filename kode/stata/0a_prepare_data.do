@@ -14,11 +14,27 @@ drop if missing(inflation_t_tminus1)
 drop if missing(inflation_t_tplus1)
 
 * aggregate overall 
-collapse (sum)  forbrug, by(ref_yr kategori indkomstgruppe inflation_t_tminus1 inflation_t_tplus1)
+collapse (sum)  forbrug, by(ref_yr kategori beskrivelse indkomstgruppe inflation_t_tminus1 inflation_t_tplus1)
 
 replace forbrug=forbrug/5
 bysort ref_yr: egen double tot_expn=sum(forbrug)
 gen expn_shr_t = forbrug/tot_expn
+/*
+keep if beskrivelse == "Foedevarer"
+
+collapse (mean) expn_shr_t, by(ref_yr indkomstgruppe)
+
+twoway (line expn_shr_t ref_yr if indkomstgruppe==1, lcolor(blue) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==2, lcolor(red) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==3, lcolor(green) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==4, lcolor(black) lpattern(solid)) ///
+    (line expn_shr_t ref_yr if indkomstgruppe==5, lcolor(pink) lpattern(solid)), ///
+    xlabel(2002(2)2022) ytitle("Andel af udgifter") xtitle("Aarstal") ///
+    legend(order(1 "Indkomstgruppe 1" 2 "Indkomstgruppe 2" 3 "Indkomstgruppe 3"4 "Indkomstgruppe 4" 5 "Indkomstgruppe 5")) ///)
+
+
+collapse (mean) expn_shr_t, by(ref_yr indkomstgruppe)
+*/
 
 bysort ref_yr: egen double paasche_tm1_t=sum(expn_shr_t*(inflation_t_tminus1)^(-1))
 replace paasche_tm1_t=1/paasche_tm1_t
