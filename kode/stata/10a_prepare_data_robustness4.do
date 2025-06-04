@@ -36,20 +36,20 @@ duplicates drop
 sort ref_yr
 
 foreach i in laspeyres geom_laspeyres {
-gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2004
-replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2004
+gen double cum_`i'_t_tp1 = `i'_t_tp1 if ref_y==2009
+replace cum_`i'=cum_`i'_t_tp1[_n-1]*`i'_t_tp1 if ref_y>2009
 }
 
 scatter cum_laspeyres_t_tp1 ref_y 
 
-* normalize everything by expenditures in 2004
+* normalize everything by expenditures in 2009
 gen double expn_normalized = tot_expn/5380.7533*100
 scatter expn_normalized ref_y 
 
 gen double real_expn = expn_normalized/cum_geom_laspeyres_t_tp1[_n-1]
 
 scatter real_expn ref_y 
-replace real_expn = 100 if ref_yr==2004
+replace real_expn = 100 if ref_yr==2009
 
 * from this, we obtain rescaling parameters to match the increase in real consumption from PCE,
 * the broadest measure of consumption from the national accounts 
@@ -58,7 +58,7 @@ merge 1:1 ref_yr using "$dataroot/benchmark_real_pce"
 keep if _merge==3 
 drop _merge
 
-* normalize real pce in 2004 
+* normalize real pce in 2009 
 replace real_pce=real_pce/161.566*100
 gen adjustment_factor = real_pce_capita/ real_expn
 keep ref_yr adjustment_factor

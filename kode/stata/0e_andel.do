@@ -14,8 +14,11 @@ gen expn_shr_t = forbrug/forbrug_total
 
 sort kategori a ref_yr
 
-*keep if a == 2
+*keep if a == 5
 
+keep if beskrivelse =="Alkoholiske drikkevarer"
+*keep if beskrivelse == "Beregnet lejevaerdi af bolig"
+*keep if beskrivelse == "Elektricitet, gas og andet braendsel"
 
 
 gen expn_shr_t_graph = expn_shr_t*100
@@ -37,3 +40,5 @@ twoway (line expn_shr_t ref_yr if a==1, lcolor(blue) lpattern(solid)) ///
     (line expn_shr_t ref_yr if a==5, lcolor(pink) lpattern(solid)), ///
     xlabel(2002(2)2022) ytitle("Andel af udgifter") xtitle("Aarstal") ///
     legend(order(1 "Aldersgruppe 1" 2 "Aldersgruppe 2" 3 "Aldersgruppe 3" 4 "Aldersgruppe 4" 5 "Aldersgruppe 5"))
+
+graph export "$resrootfig/Fig1andel_alder.pdf", as(pdf) replace

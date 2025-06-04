@@ -15,11 +15,11 @@ replace expn_shr_t=expn_shr_t/temp
 drop temp 
 
 * implement year restriction 
-drop if ref_yr<2004 | ref_yr>2014
+drop if ref_yr<2009 | ref_yr>2014
 
 * reverse the order of time & invert price change (everything else in the code below is similar)
 gen ref_yr_original = ref_yr
-replace ref_yr = 2004+(2014-ref_yr)
+replace ref_yr = 2009+(2014-ref_yr)
 
 * ii) generate aggregate expenditures and expenditure shares by decile
 * => already done in initial file
@@ -39,7 +39,7 @@ gen p=log(laspeyres_t_tp1)
 
 * for the analysis we need to use p from the previous year
 replace p = -p // we reverse time 
-replace p = 0 if ref_yr==2004 // need to set prices at 0 at the beginning by symmetry relative to previous code with forward time
+replace p = 0 if ref_yr==2009 // need to set prices at 0 at the beginning by symmetry relative to previous code with forward time
 
 *gen temp=L.p if ref_yr>1984
 *replace temp=0 if ref_yr==1984
@@ -55,10 +55,10 @@ gen double Lqu=.
 gen double q=.
 gen double qu=.
 gen double Lam=.
-replace Lq  = Ly if ref_yr==2005
-replace Lqu = Ly if ref_yr==2005
-replace q = y if ref_yr==2004
-replace qu = y if ref_yr==2004 
+replace Lq  = Ly if ref_yr==2010
+replace Lqu = Ly if ref_yr==2010
+replace q = y if ref_yr==2009
+replace qu = y if ref_yr==2009 
 * variable for regression coefficients
 gen double beta1=.
 gen double beta2=.
@@ -68,30 +68,30 @@ foreach k of numlist 1(1)2 {
 	gen double Lq`k' = .
 }
 foreach k of numlist 1(1)2 {
-	replace Lq`k' = (Lq)^`k' if ref_yr==2005
+	replace Lq`k' = (Lq)^`k' if ref_yr==2010
 }
 
 * regress price index on real income at household level
-reg p Lq1 Lq2 if ref_yr==2005, r
+reg p Lq1 Lq2 if ref_yr==2010, r
 * save coefficients
 matrix b_t2 = e(b)
 replace beta1 = b_t2[1,1]
 replace beta2 = b_t2[1,2]
 
 * generate lambda: 
-replace Lam = beta1 + beta2*2*Lq if ref_yr==2005
+replace Lam = beta1 + beta2*2*Lq if ref_yr==2010
 
 * now compute real consumption at time t, accounting for lambda
-replace q  = Lq + (y-Ly-p)/(1+Lam)  if ref_yr==2005
-replace qu = Lqu + (y-Ly-p)         if ref_yr==2005 // also compute uncorrected
+replace q  = Lq + (y-Ly-p)/(1+Lam)  if ref_yr==2010
+replace qu = Lqu + (y-Ly-p)         if ref_yr==2010 // also compute uncorrected
 
 * update variables we need for the next period: 
-replace Lq  = L.q  if ref_yr==2006
-replace Lqu = L.qu if ref_yr==2006 // also compute uncorrected
+replace Lq  = L.q  if ref_yr==2011
+replace Lqu = L.qu if ref_yr==2011 // also compute uncorrected
 
 * vii) now loop over all years
 
-foreach t of numlist 2006(1)2014 {
+foreach t of numlist 2011(1)2014 {
 	
 	* compute the power log function of real income
 	foreach k of numlist 1(1)2 {
