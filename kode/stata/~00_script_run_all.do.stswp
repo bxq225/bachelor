@@ -3,7 +3,7 @@ clear
 ***************************************
 **** 0. Globals to Be Specified
 ***************************************
-
+/*
 global path "F:\bachelor"
 
 global dataroot "F:\bachelor/data"
@@ -11,7 +11,7 @@ global coderoot "F:\bachelor/kode/stata"
 global resrootfig "F:\bachelor/data/final_figures"
 global resrootdata "F:\bachelor/data/final_data/results"
 global datarootrobustness "F:\bachelor/data/final_data/robustness_datasets"
-/*
+*/
 global path "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor"
 
 global dataroot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data"
@@ -19,19 +19,19 @@ global coderoot "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/kode/stata
 global resrootfig "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/Final_figures"
 global resrootdata "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data"
 global datarootrobustness "C:\Users/Andre/OneDrive/Dokumenter/bachelor/bachelor/data/final_data/robustness_datasets"
-*/
+
 ***************************************
 **** 0. Save the data as .dta format 
 ***************************************
-
+/*
 import excel "F:\bachelor\data\data_indkomstgrupper.xlsx",sheet("data") first
 save "F:\bachelor\data\data.dta", replace
 export delimited using F:\bachelor\data\data.csv, replace
-/*
-import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.xlsx",sheet("data") first
+*/
+import excel "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data_indkomstgrupper.xlsx",sheet("data") first
 save "C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.dta", replace
 export delimited using C:\Users\Andre\OneDrive\Dokumenter\bachelor\bachelor\data\data.csv, replace
-*/
+
 
 ***************************************
 **** 0. Prepare Raw Data 

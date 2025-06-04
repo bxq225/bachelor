@@ -20,33 +20,33 @@ keep ref_yr tot_expn laspeyres_t_tp1 geom_laspeyres_t_tp1 indkomstgruppe
 duplicates drop
 * compute cumulative inflation 
 sort indkomstgruppe ref_yr
-gen cum_laspeyres_t_tp1 = laspeyres_t_tp1 if ref_y==2002
-by indkomstgruppe: replace cum_laspeyres_t_tp1=cum_laspeyres_t_tp1[_n-1]*laspeyres_t_tp1 if ref_y>2002
+gen cum_laspeyres_t_tp1 = laspeyres_t_tp1 if ref_y==2003
+by indkomstgruppe: replace cum_laspeyres_t_tp1=cum_laspeyres_t_tp1[_n-1]*laspeyres_t_tp1 if ref_y>2003
 
-* rescale to 100 in 2002
+* rescale to 100 in 2003
 gen laspeyres_price_index_final=100
-by indkomstgruppe: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2002 
+by indkomstgruppe: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-1]*100 if ref_y>2003 
 
 * Figure 2b
 twoway connected laspeyres_price_index_final indkomstgruppe if ref_yr==2022, ///
-    ytitle("Geometrisk indeks (2002=100)") ///
+    ytitle("Geometrisk indeks (2003=100)") ///
     xlabel(1(1)5) ///
     xtitle("") ///
-    ylabel(140(1)145)
+    ylabel(138(1)142)
 graph export "$resrootfig/Fig2b_indkomst.pdf", as(pdf) replace 
 
 
 * Figure E1v
-gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2002))-1)*100 if ref_yr==2022
+gen laspeyres_annual_infl = ((laspeyres_price_index_final/100)^(1/(2022-2003))-1)*100 if ref_yr==2022
 twoway connected laspeyres_annual_infl  indkomstgruppe if ref_yr==2022, ///
     xtitle("") ///
-    ytitle("Gennemsnitlig aarlig geometrisk inflation," "2002-2022, %") ///
+    ytitle("Gennemsnitlig aarlig geometrisk inflation," "2003-2022, %") ///
     graphregion(color(white)) ///
     xlabel(1(1)5) 
 graph export "$resrootfig/FigE1v_indkomst.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)
-gen temp=tot_expn*(ref_yr==2002)
+gen temp=tot_expn*(ref_yr==2003)
 bysort indkomstgruppe: egen temp2=max(temp)
 gen nominal_expenditure=tot_expn/temp2*100
 drop temp temp2 
