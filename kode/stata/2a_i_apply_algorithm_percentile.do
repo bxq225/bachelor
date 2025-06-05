@@ -26,8 +26,8 @@ gen p=log(laspeyres_t_tp1)
 * Fig E1i
 binscatter p y, /// 
 	nq(100) absorb(ref_yr) /// 
-	xtitle("Log nominal consumption") /// 
-	ytitle("Log Geometric index (annual)") ///
+	xtitle("Log nominelle forbrug") /// 
+	ytitle("Log Geometrisk Indeks (Aarligt)") ///
 	xlabel(4(0.2)5.2) xscale(range(4 5.2))
 graph export "$resrootfig/FigE1i.pdf", as(pdf) replace 
 
