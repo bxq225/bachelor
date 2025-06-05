@@ -65,7 +65,7 @@ graph export "$resrootfig/Fig0B_indkomst.pdf", as(pdf) replace
 scatter tot_expn ref_y 
 
 gen double real_expn = tot_expn/cum_geom_laspeyres_t_tp1[_n-1]
-scatter real_expn ref_y, xlabel(2002(2)2022) ytitle("Reel Udgifter") xtitle("") 
+scatter real_expn ref_y, xlabel(2002(2)2022) ytitle("Reelle Udgifter") xtitle("") 
 graph export "$resrootfig/Fig0A_indkomst.pdf", as(pdf) replace
 
 * also keep track of results with fisher index for robustness analysis

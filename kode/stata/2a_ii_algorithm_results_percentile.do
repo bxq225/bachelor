@@ -10,10 +10,15 @@ gen p_naive = exp(y-qu)*100
 gen p_full = exp(y-q)*100
 
 twoway connected p_naive indkomstgruppe if ref_yr==2022 || connected p_full indkomstgruppe if ref_yr==2022, ///
-   xtitle("") ///
-   ytitle("Geometrisk indeks i 2022 (2003=100)")  ///
+    xtitle("Indkomstgrupper i tkr.") ///
+   ytitle("Geometrisk Indeks i 2022 (2003=100)")  ///
    graphregion(color(white)) ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=0.5)) ///
    legend(order(1 "Indkomstgrupper indeks" 2 "Med NH korrektion") rows(2))
 graph export "$resrootfig/FigE2i_indkomst.pdf", as(pdf) replace
 
@@ -21,9 +26,14 @@ graph export "$resrootfig/FigE2i_indkomst.pdf", as(pdf) replace
 replace annual_bias_percent=annual_bias_percent*100
 
 scatter annual_bias_percent indkomstgruppe if ref_yr==2022 || lfit annual_bias_percent indkomstgruppe if ref_yr==2022, ///
-   xtitle("") ///
+    xtitle("Indkomstgrupper i tkr.") ///
    ytitle("Årlig Bias i reel forbrugsvækst (%), 2022") ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
    legend(off)
 graph export "$resrootfig/Fig4Ai_indkomst.pdf", as(pdf) replace
 
@@ -39,7 +49,12 @@ scatter pc_dev_real_cons indkomstgruppe if ref_yr==2022 || lfit pc_dev_real_cons
    xtitle("") ///
    ytitle("Bias i 2022 reel forbrugs niveau, %") ///
    graphregion(color(white)) ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
    legend(off)
 graph export "$resrootfig/Fig4Bi_indkomst.pdf", as(pdf) replace
 
@@ -63,6 +78,11 @@ twoway connected change_real_exp indkomstgruppe || connected bias_pp indkomstgru
    xtitle("") ///
    ytitle("Bias i kumulativ reel forbrugsvækst" "2003-2022, pp (% af 2003 nominelle udgifter)") ///
    graphregion(color(white)) ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
    legend(order(1 "Fra indkomstgrupper indeks" 2 "Fra NH korrektion") rows(2))
 graph export "$resrootfig/FigE3i_indkomst.pdf", as(pdf) replace

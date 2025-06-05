@@ -29,11 +29,16 @@ by indkomstgruppe: replace laspeyres_price_index_final = cum_laspeyres_t_tp1[_n-
 
 * Figure 2b
 twoway connected laspeyres_price_index_final indkomstgruppe if ref_yr==2022, ///
-    ytitle("Geometrisk indeks (2003=100)") ///
-    xlabel(1(1)5) ///
-    xtitle("") ///
-    ylabel(138(1)142)
-graph export "$resrootfig/Fig2b_indkomst.pdf", as(pdf) replace 
+    ytitle("Geometrisk Indeks (2003=100)") ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
+    xtitle("Indkomstgrupper i tkr.") ///
+    ylabel(138(1)142)  
+graph export "$resrootfig/Fig2b_indkomst.pdf", as(pdf) replace
 
 
 * Figure E1v
@@ -42,7 +47,12 @@ twoway connected laspeyres_annual_infl  indkomstgruppe if ref_yr==2022, ///
     xtitle("") ///
     ytitle("Gennemsnitlig aarlig geometrisk inflation," "2003-2022, %") ///
     graphregion(color(white)) ///
-    xlabel(1(1)5) 
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5))
 graph export "$resrootfig/FigE1v_indkomst.pdf", as(pdf) replace 
 
 * prepare and save comparison file we will need for later figures (Fig D3)

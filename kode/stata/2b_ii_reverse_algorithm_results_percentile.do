@@ -16,10 +16,15 @@ gen p_full = exp(y-q)*100
 
 * fig E2ii
 twoway connected p_naive indkomstgruppe if ref_yr_o==2003 || connected p_full indkomstgruppe if ref_yr_o==2003, ///
-   xtitle("") ///
-   ytitle("Geometrisk indeks i 2003 (2022=100)") ///
+    xtitle("Indkomstgrupper i tkr.") ///
+   ytitle("Geometrisk Indeks i 2003 (2022=100)") ///
    graphregion(color(white)) ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=0.5)) ///
    legend(order(1 "Indkomstgrupper indeks" 2 "Med NH korrektion") rows(2))
 graph export "$resrootfig/FigE2ii_indkomst.pdf", as(pdf) replace
 
@@ -29,9 +34,14 @@ replace annual_bias_percent=annual_bias_percent*100
 twoway ///
    (scatter annual_bias_percent indkomstgruppe if ref_yr_o==2003) ///
    (lfit annual_bias_percent indkomstgruppe if ref_yr_o==2003), ///
-   xtitle("") ///
+    xtitle("Indkomstgrupper i tkr.") ///
    ytitle("Aarlig Bias i reel forbrugsvækst (%), 2003") ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
    legend(off)
 graph export "$resrootfig/Fig4Aii_indkomst.pdf", as(pdf) replace
 
@@ -47,7 +57,12 @@ scatter pc_dev_real_cons indkomstgruppe if ref_yr_o==2003 || lfit pc_dev_real_co
    xtitle("") ///
    ytitle("Bias i 2003 reel forbrugsniveau, %") ///
    graphregion(color(white)) ///
-   xlabel(1(1)5) ///
+    xlabel(1 "Under 250" ///
+           2 "250 - 449,999" ///
+           3 "450 - 699,999" ///
+           4 "700 - 999,999" ///
+           5 ">=1.000", labgap(1)) ///
+    graphregion(margin(r=5)) ///
    legend(off)
 graph export "$resrootfig/Fig4Bii_indkomst.pdf", as(pdf) replace
 
